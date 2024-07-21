@@ -1,6 +1,41 @@
 # arb-protos
 proto files for microservices usage
 
+# Getting Started
+
+first clone repository inside of root of project to achive this protos directory:
+```
+git submodule add https://github.com/GoBootCamp-Group1/arb-protos protos
+git submodule update --init --recursive
+```
+
+in future if you want to push latest changes in your proto services:
+
+```
+# Navigate to the submodule directory
+cd protos
+
+# Make changes in the submodule, e.g., edit proto files
+
+# Stage and commit changes in the submodule
+git add .
+git commit -m "Update proto files"
+
+# Push changes in the submodule
+git push origin main  # Replace 'main' with the appropriate branch name
+
+# Navigate back to the main repository
+cd ..
+
+# Stage the updated submodule reference and commit it in the main repository
+git add protos
+git commit -m "Update submodule reference"
+
+# Push changes in the main repository
+git push origin main  # Replace 'main' with the appropriate branch name
+```
+
+
 # Proto Generation Guide
 
 This document provides instructions on how to generate Go code from the `.proto` files in this project. The generated code includes both standard Go structs and gRPC service definitions.
