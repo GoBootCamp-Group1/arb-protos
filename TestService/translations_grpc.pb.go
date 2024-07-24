@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.4.0
 // - protoc             v5.27.2
-// source: TranslateService/translations.proto
+// source: TestService/translations.proto
 
 package arb_test
 
@@ -106,5 +106,5 @@ var Translation_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "TranslateService/translations.proto",
+	Metadata: "TestService/translations.proto",
 }

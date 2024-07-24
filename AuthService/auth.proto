@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+option go_package = "github.com/GoBootCamp-Group1/arb-auth";
+
+// The AuthService definition.
+service AuthService {
+  // Registers a new user
+  rpc Register(RegisterRequest) returns (RegisterResponse);
+  // Authenticates a user and returns a token
+  rpc Login(LoginRequest) returns (LoginResponse);
+  // Refreshes the authentication token
+  rpc RefreshToken(RefreshTokenRequest) returns (RefreshTokenResponse);
+  // Validates a token
+  rpc ValidateToken(ValidateTokenRequest) returns (ValidateTokenResponse);
+}
+
+// The request message containing the user's information for registration
+message RegisterRequest {
+  string email = 1;
+  string password = 3;
+}
+
+// The response message for registration
+message RegisterResponse {
+  string user_id = 1;
+  string message = 2;
+}
+
+// The request message containing the user's credentials for login
+message LoginRequest {
+  string email = 1;
+  string password = 2;
+}
+
+// The response message containing the authentication token
+message LoginResponse {
+  string access_token = 1;
+  string refresh_token = 2;
+  string message = 3;
+}
+
+// The request message containing the refresh token
+message RefreshTokenRequest {
+  string refresh_token = 1;
+}
+
+// The response message containing the new authentication token
+message RefreshTokenResponse {
+  string access_token = 1;
+  string refresh_token = 2;
+  string message = 3;
+}
+
+// The request message containing the token to be validated
+message ValidateTokenRequest {
+  string token = 1;
+}
+
+// The response message containing the validation result
+message ValidateTokenResponse {
+  bool is_valid = 1;
+  string user_id = 2;
+}
