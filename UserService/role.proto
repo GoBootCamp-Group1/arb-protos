@@ -1,0 +1,113 @@
+syntax = "proto3";
+
+option go_package = "github.com/GoBootCamp-Group1/arb-user";
+package role;
+
+import "UserService/user.proto";
+
+service RoleService {
+  rpc CreateRole(CreateRoleRequest) returns (CreateRoleResponse) {}
+  rpc UpdateRole(UpdateRoleRequest) returns (UpdateRoleResponse) {}
+  rpc GetRoleById(GetRoleByIdRequest) returns (GetRoleByIdResponse) {}
+  rpc GetRoleByName(GetRoleByNameRequest) returns (GetRoleByNameResponse) {}
+  rpc DeleteRole(DeleteRoleRequest) returns (DeleteRoleResponse) {}
+  rpc GetAllRoles(GetAllRolesRequest) returns (GetAllRolesResponse) {}
+  rpc AddRolePerms(AddRolePermsRequest) returns (AddRolePermsResponse) {}
+  rpc RemoveRolePerms(RemoveRolePermsRequest) returns (RemoveRolePermsResponse) {}
+}
+
+message CreateRoleRequest {
+  string name = 1;
+  string desc = 2;
+  string jwt = 3;
+}
+
+message CreateRoleResponse {
+  bool success = 1;
+  string id = 2;
+  string message = 3;
+  string error = 4;
+}
+
+message UpdateRoleRequest {
+  string id = 1;
+  string name = 2;
+  string desc = 3;
+  string jwt = 4;
+}
+
+message UpdateRoleResponse {
+  bool success = 1;
+  string message = 3;
+  string error = 4;
+}
+
+message GetRoleByIdRequest {
+  string id = 1;
+  string jwt = 2;
+}
+
+message GetRoleByIdResponse {
+  bool success = 1;
+  user.Role role = 2;
+  string message = 3;
+  string error = 4;
+}
+
+message GetRoleByNameRequest {
+  string name = 1;
+  string jwt = 2;
+}
+
+message GetRoleByNameResponse {
+  bool success = 1;
+  user.Role role = 2;
+  string message = 3;
+  string error = 4;
+}
+
+message DeleteRoleRequest {
+  string id = 1;
+  string jwt = 2;
+}
+
+message DeleteRoleResponse {
+  bool success = 1;
+  string message = 2;
+  string error = 3;
+}
+
+message GetAllRolesRequest {
+  string jwt = 1;
+}
+
+message GetAllRolesResponse {
+  bool success = 1;
+  repeated user.Role roles = 2;
+  string message = 3;
+  string error = 4;
+}
+
+message AddRolePermsRequest {
+  string id = 1;
+  repeated string permNames = 2;
+  string jwt = 3;
+}
+
+message AddRolePermsResponse {
+  bool success = 1;
+  string message = 2;
+  string error = 3;
+}
+
+message RemoveRolePermsRequest {
+  string id = 1;
+  repeated string permNames = 2;
+  string jwt = 3;
+}
+
+message RemoveRolePermsResponse {
+  bool success = 1;
+  string message = 2;
+  string error = 3;
+}

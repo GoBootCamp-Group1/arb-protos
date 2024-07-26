@@ -13,6 +13,7 @@ service UserService {
   rpc GetUsersByRole(GetUsersByRoleRequest) returns (GetUsersByRoleResponse) {}
   rpc AddUserRoles(AddUserRolesRequest) returns (AddUserRolesResponse) {}
   rpc RemoveUserRoles(RemoveUserRolesRequest) returns (RemoveUserRolesResponse) {}
+  rpc Authenticate(AuthenticateRequest) returns (AuthenticateResponse) {}
 }
 
 message CreateUserRequest {
@@ -137,4 +138,22 @@ message RemoveUserRolesResponse {
   bool success = 1;
   string message = 2;
   string error = 3;
+}
+
+message AuthenticateRequest {
+  string email = 1;
+  string password = 2;
+}
+
+message AuthenticateResult {
+  string userID = 1;
+  string name = 2;
+  repeated Role roles = 3;
+}
+
+message AuthenticateResponse {
+  bool success = 1;
+  AuthenticateResult data = 2;
+  string message = 3;
+  string error = 4;
 }

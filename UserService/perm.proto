@@ -1,0 +1,85 @@
+syntax = "proto3";
+
+option go_package = "github.com/GoBootCamp-Group1/arb-user";
+package role;
+
+import "UserService/user.proto";
+
+service PermissionService {
+  rpc CreatePermission(CreatePermissionRequest) returns (CreatePermissionResponse) {}
+  rpc UpdatePermission(UpdatePermissionRequest) returns (UpdatePermissionResponse) {}
+  rpc GetPermissionById(GetPermissionByIdRequest) returns (GetPermissionByIdResponse) {}
+  rpc GetPermissionByName(GetPermissionByNameRequest) returns (GetPermissionByNameResponse) {}
+  rpc DeletePermission(DeletePermissionRequest) returns (DeletePermissionResponse) {}
+  rpc GetAllPermissions(GetAllPermissionsRequest) returns (GetAllPermissionsResponse) {}
+}
+
+message CreatePermissionRequest {
+  string name = 1;
+  string jwt = 3;
+}
+
+message CreatePermissionResponse {
+  bool success = 1;
+  string id = 2;
+  string message = 3;
+  string error = 4;
+}
+
+message UpdatePermissionRequest {
+  string id = 1;
+  string name = 2;
+  string jwt = 4;
+}
+
+message UpdatePermissionResponse {
+  bool success = 1;
+  string message = 3;
+  string error = 4;
+}
+
+message GetPermissionByIdRequest {
+  string id = 1;
+  string jwt = 2;
+}
+
+message GetPermissionByIdResponse {
+  bool success = 1;
+  user.Permission perm = 2;
+  string message = 3;
+  string error = 4;
+}
+
+message GetPermissionByNameRequest {
+  string name = 1;
+  string jwt = 2;
+}
+
+message GetPermissionByNameResponse {
+  bool success = 1;
+  user.Permission perm = 2;
+  string message = 3;
+  string error = 4;
+}
+
+message DeletePermissionRequest {
+  string id = 1;
+  string jwt = 2;
+}
+
+message DeletePermissionResponse {
+  bool success = 1;
+  string message = 2;
+  string error = 3;
+}
+
+message GetAllPermissionsRequest {
+  string jwt = 1;
+}
+
+message GetAllPermissionsResponse {
+  bool success = 1;
+  repeated user.Permission perms = 2;
+  string message = 3;
+  string error = 4;
+}
