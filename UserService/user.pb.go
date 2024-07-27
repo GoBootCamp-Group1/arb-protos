@@ -4,7 +4,7 @@
 // 	protoc        (unknown)
 // source: user.proto
 
-package gen
+package arb_user
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
