@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "/";
+option go_package = "github.com/GoBootCamp-Group1/arb-protos/user";
 package user;
 
 //import "buf/validate/validate.proto";
