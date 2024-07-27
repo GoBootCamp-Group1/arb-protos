@@ -4,7 +4,7 @@
 // - protoc             v5.27.2
 // source: UserService/perm.proto
 
-package arb_user
+package arb_protos
 
 import (
 	context "context"

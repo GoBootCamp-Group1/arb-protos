@@ -4,7 +4,7 @@
 // - protoc             v5.27.2
 // source: AuthService/auth.proto
 
-package arb_auth
+package arb_protos
 
 import (
 	context "context"
@@ -20,6 +20,7 @@ const _ = grpc.SupportPackageIsVersion8
 
 const (
 	AuthService_Login_FullMethodName         = "/AuthService/Login"
+	AuthService_Me_FullMethodName            = "/AuthService/Me"
 	AuthService_Register_FullMethodName      = "/AuthService/Register"
 	AuthService_RefreshToken_FullMethodName  = "/AuthService/RefreshToken"
 	AuthService_ValidateToken_FullMethodName = "/AuthService/ValidateToken"
@@ -33,6 +34,8 @@ const (
 type AuthServiceClient interface {
 	// Authenticates a user and returns a token
 	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginResponse, error)
+	// Show User info using token
+	Me(ctx context.Context, in *MeRequest, opts ...grpc.CallOption) (*MeResponse, error)
 	// Registers a new user
 	Register(ctx context.Context, in *RegisterRequest, opts ...grpc.CallOption) (*RegisterResponse, error)
 	// Refreshes the authentication token
@@ -53,6 +56,16 @@ func (c *authServiceClient) Login(ctx context.Context, in *LoginRequest, opts ..
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(LoginResponse)
 	err := c.cc.Invoke(ctx, AuthService_Login_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *authServiceClient) Me(ctx context.Context, in *MeRequest, opts ...grpc.CallOption) (*MeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MeResponse)
+	err := c.cc.Invoke(ctx, AuthService_Me_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -97,6 +110,8 @@ func (c *authServiceClient) ValidateToken(ctx context.Context, in *ValidateToken
 type AuthServiceServer interface {
 	// Authenticates a user and returns a token
 	Login(context.Context, *LoginRequest) (*LoginResponse, error)
+	// Show User info using token
+	Me(context.Context, *MeRequest) (*MeResponse, error)
 	// Registers a new user
 	Register(context.Context, *RegisterRequest) (*RegisterResponse, error)
 	// Refreshes the authentication token
@@ -112,6 +127,9 @@ type UnimplementedAuthServiceServer struct {
 
 func (UnimplementedAuthServiceServer) Login(context.Context, *LoginRequest) (*LoginResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Login not implemented")
+}
+func (UnimplementedAuthServiceServer) Me(context.Context, *MeRequest) (*MeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Me not implemented")
 }
 func (UnimplementedAuthServiceServer) Register(context.Context, *RegisterRequest) (*RegisterResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Register not implemented")
@@ -149,6 +167,24 @@ func _AuthService_Login_Handler(srv interface{}, ctx context.Context, dec func(i
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(AuthServiceServer).Login(ctx, req.(*LoginRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AuthService_Me_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AuthServiceServer).Me(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AuthService_Me_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AuthServiceServer).Me(ctx, req.(*MeRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -217,6 +253,10 @@ var AuthService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Login",
 			Handler:    _AuthService_Login_Handler,
+		},
+		{
+			MethodName: "Me",
+			Handler:    _AuthService_Me_Handler,
 		},
 		{
 			MethodName: "Register",

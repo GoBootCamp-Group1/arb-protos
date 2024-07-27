@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "github.com/GoBootCamp-Group1/arb-user";
+option go_package = "github.com/GoBootCamp-Group1/arb-protos";
 package role;
 
 import "UserService/user.proto";

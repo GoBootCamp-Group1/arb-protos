@@ -1,11 +1,15 @@
 syntax = "proto3";
 
-option go_package = "github.com/GoBootCamp-Group1/arb-auth";
+option go_package = "github.com/GoBootCamp-Group1/arb-protos";
+
+import "UserService/user.proto";
 
 // The AuthService definition.
 service AuthService {
   // Authenticates a user and returns a token
   rpc Login(LoginRequest) returns (LoginResponse);
+  // Show User info using token
+  rpc Me(MeRequest) returns (MeResponse);
   // Registers a new user
   rpc Register(RegisterRequest) returns (RegisterResponse);
   // Refreshes the authentication token
@@ -25,6 +29,19 @@ message RegisterResponse {
   string user_id = 1;
   string message = 2;
   bool success = 3;
+}
+
+// The request message containing the user's information for registration
+message MeRequest {
+
+}
+
+// The response message for registration
+message MeResponse {
+  bool success = 1;
+  user.User user = 2;
+  string message = 3;
+  string error = 4;
 }
 
 // The request message containing the user's credentials for login
