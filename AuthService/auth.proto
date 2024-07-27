@@ -4,10 +4,10 @@ option go_package = "github.com/GoBootCamp-Group1/arb-auth";
 
 // The AuthService definition.
 service AuthService {
-  // Registers a new user
-  rpc Register(RegisterRequest) returns (RegisterResponse);
   // Authenticates a user and returns a token
   rpc Login(LoginRequest) returns (LoginResponse);
+  // Registers a new user
+  rpc Register(RegisterRequest) returns (RegisterResponse);
   // Refreshes the authentication token
   rpc RefreshToken(RefreshTokenRequest) returns (RefreshTokenResponse);
   // Validates a token
@@ -24,6 +24,7 @@ message RegisterRequest {
 message RegisterResponse {
   string user_id = 1;
   string message = 2;
+  bool success = 3;
 }
 
 // The request message containing the user's credentials for login
@@ -37,6 +38,7 @@ message LoginResponse {
   string access_token = 1;
   string refresh_token = 2;
   string message = 3;
+  bool success = 4;
 }
 
 // The request message containing the refresh token
@@ -49,6 +51,7 @@ message RefreshTokenResponse {
   string access_token = 1;
   string refresh_token = 2;
   string message = 3;
+  bool success = 4;
 }
 
 // The request message containing the token to be validated
@@ -60,4 +63,5 @@ message ValidateTokenRequest {
 message ValidateTokenResponse {
   bool is_valid = 1;
   string user_id = 2;
+  bool success = 3;
 }
