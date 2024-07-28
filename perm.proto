@@ -1,9 +1,9 @@
 syntax = "proto3";
 
-option go_package = "github.com/GoBootCamp-Group1/arb-protos/user";
+option go_package = "github.com/GoBootCamp-Group1/arb-protos";
 package role;
 
-import "UserService/user.proto";
+import "user.proto";
 
 service PermissionService {
   rpc CreatePermission(CreatePermissionRequest) returns (CreatePermissionResponse) {}

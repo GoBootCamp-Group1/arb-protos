@@ -80,7 +80,7 @@ Ensure you have `protoc` and the necessary Go plugins installed:
 Run the following command from the root of your project to generate Go code for all proto files:
 
 ```sh
-protoc --proto_path=./protos --go_out=./protos --go_opt=paths=source_relative --go-grpc_out=./protos --go-grpc_opt=paths=source_relative ./protos/*/*.proto
+protoc --proto_path=./protos --go_out=./protos --go_opt=paths=source_relative --go-grpc_out=./protos --go-grpc_opt=paths=source_relative ./protos/*.proto
 ```
 
 ### Command Breakdown

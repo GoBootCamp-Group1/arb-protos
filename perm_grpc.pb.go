@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.4.0
 // - protoc             v5.27.2
-// source: UserService/perm.proto
+// source: perm.proto
 
-package user
+package arb_protos
 
 import (
 	context "context"
@@ -296,5 +296,5 @@ var PermissionService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "UserService/perm.proto",
+	Metadata: "perm.proto",
 }

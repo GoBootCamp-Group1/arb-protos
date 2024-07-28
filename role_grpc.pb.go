@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.4.0
 // - protoc             v5.27.2
-// source: UserService/role.proto
+// source: role.proto
 
-package user
+package arb_protos
 
 import (
 	context "context"
@@ -372,5 +372,5 @@ var RoleService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "UserService/role.proto",
+	Metadata: "role.proto",
 }
