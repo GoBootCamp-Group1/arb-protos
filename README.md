@@ -67,6 +67,7 @@ Ensure you have `protoc` and the necessary Go plugins installed:
    ```sh
    go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
    go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+   go install github.com/envoyproxy/protoc-gen-validate@latest
    ```
 
 3. **Add Go Binaries to PATH**:
@@ -80,17 +81,8 @@ Ensure you have `protoc` and the necessary Go plugins installed:
 Run the following command from the root of your project to generate Go code for all proto files:
 
 ```sh
-protoc --proto_path=./protos --go_out=./protos --go_opt=paths=source_relative --go-grpc_out=./protos --go-grpc_opt=paths=source_relative ./protos/*.proto
+protoc --proto_path=./protos --go_out=./protos --go_opt=paths=source_relative --go-grpc_out=./protos --go-grpc_opt=paths=source_relative --validate_out="lang=go,paths=source_relative:./protos" ./protos/*.proto
 ```
-
-### Command Breakdown
-
-- `--proto_path=./protos`: Specifies the root directory where the `.proto` files are located.
-- `--go_out=./protos`: Specifies the output directory for the generated Go code.
-- `--go_opt=paths=source_relative`: Ensures that the generated Go files preserve the directory structure relative to the source.
-- `--go-grpc_out=./protos`: Specifies the output directory for the generated gRPC Go code.
-- `--go-grpc_opt=paths=source_relative`: Ensures that the generated gRPC Go files preserve the directory structure relative to the source.
-- `./protos/*/*.proto`: Specifies the pattern to match all `.proto` files within the service directories.
 
 ## Using Makefile
 
