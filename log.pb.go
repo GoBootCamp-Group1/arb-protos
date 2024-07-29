@@ -4,7 +4,7 @@
 // 	protoc        (unknown)
 // source: log.proto
 
-package gen
+package arb_protos
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
