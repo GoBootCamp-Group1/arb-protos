@@ -30,6 +30,7 @@ const (
 	UserService_RemoveUserRoles_FullMethodName = "/user.UserService/RemoveUserRoles"
 	UserService_Authenticate_FullMethodName    = "/user.UserService/Authenticate"
 	UserService_BlockUser_FullMethodName       = "/user.UserService/BlockUser"
+	UserService_UnBlockUser_FullMethodName     = "/user.UserService/UnBlockUser"
 )
 
 // UserServiceClient is the client API for UserService service.
@@ -47,6 +48,7 @@ type UserServiceClient interface {
 	RemoveUserRoles(ctx context.Context, in *RemoveUserRolesRequest, opts ...grpc.CallOption) (*RemoveUserRolesResponse, error)
 	Authenticate(ctx context.Context, in *AuthenticateRequest, opts ...grpc.CallOption) (*AuthenticateResponse, error)
 	BlockUser(ctx context.Context, in *BlockUserRequest, opts ...grpc.CallOption) (*BlockUserResponse, error)
+	UnBlockUser(ctx context.Context, in *UnBlockUserRequest, opts ...grpc.CallOption) (*UnBlockUserResponse, error)
 }
 
 type userServiceClient struct {
@@ -167,6 +169,16 @@ func (c *userServiceClient) BlockUser(ctx context.Context, in *BlockUserRequest,
 	return out, nil
 }
 
+func (c *userServiceClient) UnBlockUser(ctx context.Context, in *UnBlockUserRequest, opts ...grpc.CallOption) (*UnBlockUserResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UnBlockUserResponse)
+	err := c.cc.Invoke(ctx, UserService_UnBlockUser_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserServiceServer is the server API for UserService service.
 // All implementations must embed UnimplementedUserServiceServer
 // for forward compatibility
@@ -182,6 +194,7 @@ type UserServiceServer interface {
 	RemoveUserRoles(context.Context, *RemoveUserRolesRequest) (*RemoveUserRolesResponse, error)
 	Authenticate(context.Context, *AuthenticateRequest) (*AuthenticateResponse, error)
 	BlockUser(context.Context, *BlockUserRequest) (*BlockUserResponse, error)
+	UnBlockUser(context.Context, *UnBlockUserRequest) (*UnBlockUserResponse, error)
 	mustEmbedUnimplementedUserServiceServer()
 }
 
@@ -221,6 +234,9 @@ func (UnimplementedUserServiceServer) Authenticate(context.Context, *Authenticat
 }
 func (UnimplementedUserServiceServer) BlockUser(context.Context, *BlockUserRequest) (*BlockUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BlockUser not implemented")
+}
+func (UnimplementedUserServiceServer) UnBlockUser(context.Context, *UnBlockUserRequest) (*UnBlockUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UnBlockUser not implemented")
 }
 func (UnimplementedUserServiceServer) mustEmbedUnimplementedUserServiceServer() {}
 
@@ -433,6 +449,24 @@ func _UserService_BlockUser_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UserService_UnBlockUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UnBlockUserRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).UnBlockUser(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserService_UnBlockUser_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).UnBlockUser(ctx, req.(*UnBlockUserRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // UserService_ServiceDesc is the grpc.ServiceDesc for UserService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -483,6 +517,10 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "BlockUser",
 			Handler:    _UserService_BlockUser_Handler,
+		},
+		{
+			MethodName: "UnBlockUser",
+			Handler:    _UserService_UnBlockUser_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

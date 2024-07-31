@@ -18,6 +18,7 @@ service UserService {
   rpc RemoveUserRoles(RemoveUserRolesRequest) returns (RemoveUserRolesResponse) {}
   rpc Authenticate(AuthenticateRequest) returns (AuthenticateResponse) {}
   rpc BlockUser(BlockUserRequest) returns (BlockUserResponse) {}
+  rpc UnBlockUser(UnBlockUserRequest) returns (UnBlockUserResponse) {}
 }
 
 message CreateUserRequest {
@@ -172,6 +173,17 @@ message BlockUserRequest {
 }
 
 message BlockUserResponse {
+  bool success = 1;
+  string message = 3;
+  string error = 4;
+}
+
+message UnBlockUserRequest {
+  string userId = 1;
+  string jwt = 3;
+}
+
+message UnBlockUserResponse {
   bool success = 1;
   string message = 3;
   string error = 4;
