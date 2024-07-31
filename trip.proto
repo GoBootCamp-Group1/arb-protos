@@ -1,0 +1,125 @@
+syntax = "proto3";
+option go_package="github.com/GoBootCamp-Group1/arb-protos" ; ;
+package transportation;
+
+import "google/protobuf/timestamp.proto";
+service TripService {
+  rpc CreateTrip (CreateTripRequest) returns (CreateTripResponse);
+  rpc GetTrip (GetTripRequest) returns (GetTripResponse);
+  rpc UpdateTrip (UpdateTripRequest) returns (UpdateTripResponse);
+  rpc DeleteTrip (DeleteTripRequest) returns (DeleteTripResponse);
+  rpc SearchTrips (SearchTripsRequest) returns (SearchTripsResponse);
+}
+
+message CreateTripRequest {
+  string company_id = 1;
+  string origin = 2;
+  string destination = 3;
+  string vehicle_id = 4;
+  google.protobuf.Timestamp departure_time = 5;
+  google.protobuf.Timestamp arrival_time = 6;
+  google.protobuf.Timestamp user_release_time = 7;
+  google.protobuf.Timestamp agency_release_time = 8;
+  int32 min_passengers = 9;
+  float cost = 10;
+  float tariff_user = 11;
+  float tariff_agent = 12;
+  string status = 13;
+  string trip_type = 14;
+}
+
+message CreateTripResponse {
+  string status = 1;
+}
+
+message GetTripRequest {
+  string id = 1;
+}
+
+message GetTripResponse {
+  string id = 1;
+  string company_id = 2;
+  string origin = 3;
+  string destination = 4;
+  string vehicle_id = 5;
+  google.protobuf.Timestamp departure_time = 6;
+  google.protobuf.Timestamp arrival_time = 7;
+  google.protobuf.Timestamp user_release_time = 8;
+  google.protobuf.Timestamp agency_release_time = 9;
+  int32 min_passengers = 10;
+  float cost = 11;
+  float tariff_user = 12;
+  float tariff_agent = 13;
+  string status = 14;
+  string trip_type = 15;
+  string company_name=16;
+}
+
+message UpdateTripRequest {
+  string id = 1;
+  string company_id = 2;
+  string origin = 3;
+  string destination = 4;
+  string vehicle_id = 5;
+  google.protobuf.Timestamp departure_time = 6;
+  google.protobuf.Timestamp arrival_time = 7;
+  google.protobuf.Timestamp user_release_time = 8;
+  google.protobuf.Timestamp agency_release_time = 9;
+  int32 min_passengers = 10;
+  float cost = 11;
+  float tariff_user = 12;
+  float tariff_agent = 13;
+  string status = 14;
+  string trip_type = 15;
+}
+
+message UpdateTripResponse {
+  string status = 1;
+}
+
+message DeleteTripRequest {
+  string id = 1;
+}
+
+message DeleteTripResponse {
+  string status = 1;
+}
+
+message SearchTripsRequest {
+  string company_id = 1;
+  string origin = 2;
+  string destination = 3;
+  string vehicle_id = 4;
+  string status = 5;
+  string trip_type = 6;
+  google.protobuf.Timestamp min_departure = 7;
+  google.protobuf.Timestamp max_departure = 8;
+  google.protobuf.Timestamp min_arrival = 9;
+  google.protobuf.Timestamp max_arrival = 10;
+  float min_cost = 11;
+  float max_cost = 12;
+  string sort_field = 13;
+  string sort_direction = 14;
+}
+
+message SearchTripsResponse {
+  repeated Trip trips = 1;
+}
+
+message Trip {
+  string id = 1;
+  string company_id = 2;
+  string origin = 3;
+  string destination = 4;
+  string vehicle_id = 5;
+  google.protobuf.Timestamp departure_time = 6;
+  google.protobuf.Timestamp arrival_time = 7;
+  google.protobuf.Timestamp user_release_time = 8;
+  google.protobuf.Timestamp agency_release_time = 9;
+  int32 min_passengers = 10;
+  float cost = 11;
+  float tariff_user = 12;
+  float tariff_agent = 13;
+  string status = 14;
+  string trip_type = 15;
+}

@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+option go_package="github.com/GoBootCamp-Group1/arb-protos" ; ;
+package transportation;
+
+service TransportationService {
+  rpc CreateTransportation (CreateTransportationRequest) returns (CreateTransportationResponse);
+  rpc GetTransportation (GetTransportationRequest) returns (GetTransportationResponse);
+  rpc UpdateTransportation (UpdateTransportationRequest) returns (UpdateTransportationResponse);
+  rpc DeleteTransportation (DeleteTransportationRequest) returns (DeleteTransportationResponse);
+  rpc ListTransportationCompanies (ListTransportationCompaniesRequest) returns (ListTransportationCompaniesResponse);
+  rpc ListTransportationsByOwner (ListTransportationsByOwnerRequest) returns (ListTransportationsByOwnerResponse);
+}
+
+message CreateTransportationRequest {
+  string owner_id = 1;
+  string name = 2;
+  float wallet_balance = 3;
+}
+
+message CreateTransportationResponse {
+  string status = 1;
+}
+
+message GetTransportationRequest {
+  string id = 1;
+}
+
+message GetTransportationResponse {
+  string id = 1;
+  string owner_id = 2;
+  string name = 3;
+  float wallet_balance = 4;
+}
+
+message UpdateTransportationRequest {
+  string id = 1;
+  string owner_id = 2;
+  string name = 3;
+  float wallet_balance = 4;
+}
+
+message UpdateTransportationResponse {
+  string status = 1;
+}
+
+message DeleteTransportationRequest {
+  string id = 1;
+}
+
+message DeleteTransportationResponse {
+  string status = 1;
+}
+
+message ListTransportationCompaniesRequest {}
+
+message ListTransportationCompaniesResponse {
+  repeated TransportationCompany companies = 1;
+}
+
+message ListTransportationsByOwnerRequest {
+  string owner_id = 1;
+}
+
+message ListTransportationsByOwnerResponse {
+  repeated TransportationCompany companies = 1;
+}
+
+message TransportationCompany {
+  string id = 1;
+  string owner_id = 2;
+  string name = 3;
+  float wallet_balance = 4;
+}
