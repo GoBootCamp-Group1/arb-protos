@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+package city;
+
+option go_package = "github.com/GoBootCamp-Group1/arb-protos";
+
+service CityService {
+  rpc CreateCity (CityRequest) returns (CityResponse);
+  rpc GetCity (GetCityByIdRequest) returns (GetCityByIdResponse);
+  rpc GetCities (Empty) returns (GetCitiesResponse);
+  rpc UpdateCity (City) returns (CityResponse);
+  rpc DeleteCity (GetCityByIdRequest) returns (DeleteCityResponse);
+}
+
+
+message City {
+  string id = 1;
+  string name = 2;
+  float lat = 3;
+  float lng = 4;
+}
+
+message CityRequest {
+  string name = 1;
+  float lat = 2;
+  float lng = 3;
+}
+
+message CityResponse {
+  bool success = 1;
+  City data = 2;
+}
+
+message Empty {}
+
+message DeleteCityResponse {
+  bool success = 1;
+}
+
+message GetCitiesResponse {
+  bool success = 1;
+  repeated City data = 2;
+}
+
+message GetCityByIdRequest {
+  string id = 1;
+}
+
+message GetCityByIdResponse {
+  bool success = 1;
+  City data = 2;
+}
+
+message GetCityByNameRequest {
+  string name = 1;
+}
+
+message GetCityByNameResponse {
+  bool success = 1;
+  City data = 2;
+}
+
+
