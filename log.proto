@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option go_package = "github.com/GoBootCamp-Group1/arb-protos";
+package log;
+
+service SearchLogService {
+  rpc SearchLog(SearchLogRequest) returns (SearchLogResponse) {}
+}
+
+message SearchLogRequest {
+  string index = 1;
+  string jwt = 2;
+  string entityID = 3;
+  string level = 4;
+}
+
+message Log {
+  string timestamp = 1;
+  string level = 2;
+  string message = 3;
+}
+
+message SearchLogResponse {
+  bool success = 1;
+  repeated Log logs = 2;
+  string message = 3;
+  string error = 4;
+}

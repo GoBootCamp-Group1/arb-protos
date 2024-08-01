@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+package station;
+
+option go_package = "github.com/GoBootCamp-Group1/arb-protos";
+
+import "city.proto";
+
+service StationService {
+  rpc CreateStation(StationRequest) returns (GetStationResponse);
+  rpc GetStation(GetStationByIDRequest) returns (GetStationResponse);
+  rpc GetStationsByCity(GetStationByCityRequest) returns (GetStationsResponse);
+  rpc GetStationsByType(GetStationByTypeRequest) returns (GetStationsResponse);
+  rpc UpdateStation(Station) returns (GetStationResponse);
+  rpc DeleteStation(GetStationByIDRequest) returns (DeleteStationResponse);
+}
+
+enum StationType {
+  FLY = 0;
+  TRAIN = 1;
+  ROAD = 2;
+}
+
+message Station {
+  string id = 1;
+  string name = 2;
+  StationType type = 3;
+  string originID = 4;
+  city.City origin = 5;
+}
+
+message StationRequest {
+  string name = 1;
+  StationType type = 2;
+  string originID = 3;
+}
+
+message GetStationByCityRequest {
+  string originID = 1;
+}
+
+message GetStationByTypeRequest {
+  StationType type = 1;
+}
+
+message DeleteStationResponse {
+  bool success = 1;
+}
+
+message GetStationsResponse {
+  bool success = 1;
+  repeated Station data = 2;
+}
+
+message GetStationByIDRequest {
+  string id = 1;
+}
+
+message GetStationResponse {
+  bool success = 1;
+  Station data = 2;
+}
