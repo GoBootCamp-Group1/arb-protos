@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "github.com/GoBootCamp-Group1/arb-protos";
+option go_package = "/";
 package user;
 
 //import "buf/validate/validate.proto";
@@ -17,6 +17,8 @@ service UserService {
   rpc AddUserRoles(AddUserRolesRequest) returns (AddUserRolesResponse) {}
   rpc RemoveUserRoles(RemoveUserRolesRequest) returns (RemoveUserRolesResponse) {}
   rpc Authenticate(AuthenticateRequest) returns (AuthenticateResponse) {}
+  rpc BlockUser(BlockUserRequest) returns (BlockUserResponse) {}
+  rpc UnBlockUser(UnBlockUserRequest) returns (UnBlockUserResponse) {}
 }
 
 message CreateUserRequest {
@@ -61,6 +63,7 @@ message User {
   string name = 2;
   string email = 3;
   repeated Role roles = 4;
+  bool blocked = 5;
 }
 
 message GetUserByIdRequest {
@@ -160,6 +163,28 @@ message AuthenticateResult {
 message AuthenticateResponse {
   bool success = 1;
   AuthenticateResult data = 2;
+  string message = 3;
+  string error = 4;
+}
+
+message BlockUserRequest {
+  string userId = 1;
+  string jwt = 3;
+}
+
+message BlockUserResponse {
+  bool success = 1;
+  string message = 3;
+  string error = 4;
+}
+
+message UnBlockUserRequest {
+  string userId = 1;
+  string jwt = 3;
+}
+
+message UnBlockUserResponse {
+  bool success = 1;
   string message = 3;
   string error = 4;
 }
