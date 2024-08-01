@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package city;
+
+option go_package = "github.com/GoBootCamp-Group1/arb-protos";
+
+import "station.proto";
+
+service WayService {
+  rpc CreateWay(WayRequest) returns (WayResponse);
+  rpc GetWay(GetWayByIDRequest) returns (WayResponse);
+  rpc GetWayByStation(GetWayByStationRequest) returns (GetWaysResponse);
+  rpc GetWayByDestination(GetWayByDestinationRequest) returns (GetWaysResponse);
+  rpc UpdateWay(Way) returns (WayResponse);
+  rpc DeleteWay(GetWayByIDRequest) returns (DeleteWayResponse);
+}
+
+message Way {
+  string id = 1;
+  string stationID = 2;
+  station.Station station = 3;
+  string destinationID = 4;
+  station.Station destination = 5;
+  float distance = 6;
+}
+
+message WayRequest {
+  string stationID = 2;
+  string destinationID = 3;
+}
+
+message WayResponse {
+  bool success = 1;
+  Way data = 2;
+}
+
+message GetWaysResponse {
+  bool success = 1;
+  repeated Way data = 2;
+}
+
+message GetWayByIDRequest {
+  string id = 1;
+}
+
+message GetWayByStationRequest {
+  string stationID = 1;
+}
+
+message GetWayByDestinationRequest {
+  string destinationID = 1;
+}
+
+message DeleteWayResponse {
+  bool success = 1;
+}
+
