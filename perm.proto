@@ -1,8 +1,9 @@
 syntax = "proto3";
 
 option go_package = "github.com/GoBootCamp-Group1/arb-protos";
-package role;
+package permission;
 
+import "validator/validate.proto";
 import "user.proto";
 
 service PermissionService {
@@ -15,7 +16,7 @@ service PermissionService {
 }
 
 message CreatePermissionRequest {
-  string name = 1;
+  string name = 1 [(validate.rules).string = {min_len: 3}];
   string jwt = 3;
 }
 
@@ -28,7 +29,7 @@ message CreatePermissionResponse {
 
 message UpdatePermissionRequest {
   string id = 1;
-  string name = 2;
+  string name = 2 [(validate.rules).string = {min_len: 3}];
   string jwt = 4;
 }
 
@@ -51,7 +52,7 @@ message GetPermissionByIdResponse {
 }
 
 message GetPermissionByNameRequest {
-  string name = 1;
+  string name = 1 [(validate.rules).string = {min_len: 3}];
   string jwt = 2;
 }
 

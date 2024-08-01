@@ -3,6 +3,7 @@ syntax = "proto3";
 option go_package = "github.com/GoBootCamp-Group1/arb-protos";
 package role;
 
+import "validator/validate.proto";
 import "user.proto";
 
 service RoleService {
@@ -17,8 +18,8 @@ service RoleService {
 }
 
 message CreateRoleRequest {
-  string name = 1;
-  string desc = 2;
+  string name = 1 [(validate.rules).string = {min_len: 3}];
+  string desc = 2 [(validate.rules).string = {min_len: 3}];
   string jwt = 3;
 }
 
@@ -31,8 +32,8 @@ message CreateRoleResponse {
 
 message UpdateRoleRequest {
   string id = 1;
-  string name = 2;
-  string desc = 3;
+  string name = 2 [(validate.rules).string = {min_len: 3}];
+  string desc = 3 [(validate.rules).string = {min_len: 3}];
   string jwt = 4;
 }
 
@@ -55,7 +56,7 @@ message GetRoleByIdResponse {
 }
 
 message GetRoleByNameRequest {
-  string name = 1;
+  string name = 1 [(validate.rules).string = {min_len: 3}];
   string jwt = 2;
 }
 
