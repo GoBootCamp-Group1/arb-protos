@@ -19,12 +19,12 @@ import (
 const _ = grpc.SupportPackageIsVersion8
 
 const (
-	PermissionService_CreatePermission_FullMethodName    = "/role.PermissionService/CreatePermission"
-	PermissionService_UpdatePermission_FullMethodName    = "/role.PermissionService/UpdatePermission"
-	PermissionService_GetPermissionById_FullMethodName   = "/role.PermissionService/GetPermissionById"
-	PermissionService_GetPermissionByName_FullMethodName = "/role.PermissionService/GetPermissionByName"
-	PermissionService_DeletePermission_FullMethodName    = "/role.PermissionService/DeletePermission"
-	PermissionService_GetAllPermissions_FullMethodName   = "/role.PermissionService/GetAllPermissions"
+	PermissionService_CreatePermission_FullMethodName    = "/permission.PermissionService/CreatePermission"
+	PermissionService_UpdatePermission_FullMethodName    = "/permission.PermissionService/UpdatePermission"
+	PermissionService_GetPermissionById_FullMethodName   = "/permission.PermissionService/GetPermissionById"
+	PermissionService_GetPermissionByName_FullMethodName = "/permission.PermissionService/GetPermissionByName"
+	PermissionService_DeletePermission_FullMethodName    = "/permission.PermissionService/DeletePermission"
+	PermissionService_GetAllPermissions_FullMethodName   = "/permission.PermissionService/GetAllPermissions"
 )
 
 // PermissionServiceClient is the client API for PermissionService service.
@@ -267,7 +267,7 @@ func _PermissionService_GetAllPermissions_Handler(srv interface{}, ctx context.C
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var PermissionService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "role.PermissionService",
+	ServiceName: "permission.PermissionService",
 	HandlerType: (*PermissionServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
