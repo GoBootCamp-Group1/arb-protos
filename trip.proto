@@ -9,8 +9,27 @@ service TripService {
   rpc UpdateTrip (UpdateTripRequest) returns (UpdateTripResponse);
   rpc DeleteTrip (DeleteTripRequest) returns (DeleteTripResponse);
   rpc SearchTrips (SearchTripsRequest) returns (SearchTripsResponse);
+  rpc GetTrips (GetTripsRequest) returns (SearchTripsResponse);
+  rpc GetTripsAgency(GetTripsRequest) returns (SearchTripsResponse);
+  rpc ActivateTrip(ActivateTripRequest) returns (ActivateTripResponse);
+  rpc FinishTrip(FinishTripRequest) returns (FinishTripResponse);
 }
+message ActivateTripRequest{
+  string trip_id =1;
 
+}
+message FinishTripRequest{
+  string trip_id =1;
+}
+message FinishTripResponse{
+  string status =1;
+}
+message ActivateTripResponse{
+  string status =1;
+}
+message GetTripsRequest{
+
+}
 message CreateTripRequest {
   string company_id = 1;
   string origin = 2;

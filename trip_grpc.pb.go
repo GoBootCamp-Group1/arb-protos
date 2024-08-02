@@ -19,11 +19,15 @@ import (
 const _ = grpc.SupportPackageIsVersion8
 
 const (
-	TripService_CreateTrip_FullMethodName  = "/transportation.TripService/CreateTrip"
-	TripService_GetTrip_FullMethodName     = "/transportation.TripService/GetTrip"
-	TripService_UpdateTrip_FullMethodName  = "/transportation.TripService/UpdateTrip"
-	TripService_DeleteTrip_FullMethodName  = "/transportation.TripService/DeleteTrip"
-	TripService_SearchTrips_FullMethodName = "/transportation.TripService/SearchTrips"
+	TripService_CreateTrip_FullMethodName     = "/transportation.TripService/CreateTrip"
+	TripService_GetTrip_FullMethodName        = "/transportation.TripService/GetTrip"
+	TripService_UpdateTrip_FullMethodName     = "/transportation.TripService/UpdateTrip"
+	TripService_DeleteTrip_FullMethodName     = "/transportation.TripService/DeleteTrip"
+	TripService_SearchTrips_FullMethodName    = "/transportation.TripService/SearchTrips"
+	TripService_GetTrips_FullMethodName       = "/transportation.TripService/GetTrips"
+	TripService_GetTripsAgency_FullMethodName = "/transportation.TripService/GetTripsAgency"
+	TripService_ActivateTrip_FullMethodName   = "/transportation.TripService/ActivateTrip"
+	TripService_FinishTrip_FullMethodName     = "/transportation.TripService/FinishTrip"
 )
 
 // TripServiceClient is the client API for TripService service.
@@ -35,6 +39,10 @@ type TripServiceClient interface {
 	UpdateTrip(ctx context.Context, in *UpdateTripRequest, opts ...grpc.CallOption) (*UpdateTripResponse, error)
 	DeleteTrip(ctx context.Context, in *DeleteTripRequest, opts ...grpc.CallOption) (*DeleteTripResponse, error)
 	SearchTrips(ctx context.Context, in *SearchTripsRequest, opts ...grpc.CallOption) (*SearchTripsResponse, error)
+	GetTrips(ctx context.Context, in *GetTripsRequest, opts ...grpc.CallOption) (*SearchTripsResponse, error)
+	GetTripsAgency(ctx context.Context, in *GetTripsRequest, opts ...grpc.CallOption) (*SearchTripsResponse, error)
+	ActivateTrip(ctx context.Context, in *ActivateTripRequest, opts ...grpc.CallOption) (*ActivateTripResponse, error)
+	FinishTrip(ctx context.Context, in *FinishTripRequest, opts ...grpc.CallOption) (*FinishTripResponse, error)
 }
 
 type tripServiceClient struct {
@@ -95,6 +103,46 @@ func (c *tripServiceClient) SearchTrips(ctx context.Context, in *SearchTripsRequ
 	return out, nil
 }
 
+func (c *tripServiceClient) GetTrips(ctx context.Context, in *GetTripsRequest, opts ...grpc.CallOption) (*SearchTripsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SearchTripsResponse)
+	err := c.cc.Invoke(ctx, TripService_GetTrips_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tripServiceClient) GetTripsAgency(ctx context.Context, in *GetTripsRequest, opts ...grpc.CallOption) (*SearchTripsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(SearchTripsResponse)
+	err := c.cc.Invoke(ctx, TripService_GetTripsAgency_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tripServiceClient) ActivateTrip(ctx context.Context, in *ActivateTripRequest, opts ...grpc.CallOption) (*ActivateTripResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ActivateTripResponse)
+	err := c.cc.Invoke(ctx, TripService_ActivateTrip_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *tripServiceClient) FinishTrip(ctx context.Context, in *FinishTripRequest, opts ...grpc.CallOption) (*FinishTripResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(FinishTripResponse)
+	err := c.cc.Invoke(ctx, TripService_FinishTrip_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TripServiceServer is the server API for TripService service.
 // All implementations must embed UnimplementedTripServiceServer
 // for forward compatibility
@@ -104,6 +152,10 @@ type TripServiceServer interface {
 	UpdateTrip(context.Context, *UpdateTripRequest) (*UpdateTripResponse, error)
 	DeleteTrip(context.Context, *DeleteTripRequest) (*DeleteTripResponse, error)
 	SearchTrips(context.Context, *SearchTripsRequest) (*SearchTripsResponse, error)
+	GetTrips(context.Context, *GetTripsRequest) (*SearchTripsResponse, error)
+	GetTripsAgency(context.Context, *GetTripsRequest) (*SearchTripsResponse, error)
+	ActivateTrip(context.Context, *ActivateTripRequest) (*ActivateTripResponse, error)
+	FinishTrip(context.Context, *FinishTripRequest) (*FinishTripResponse, error)
 	mustEmbedUnimplementedTripServiceServer()
 }
 
@@ -125,6 +177,18 @@ func (UnimplementedTripServiceServer) DeleteTrip(context.Context, *DeleteTripReq
 }
 func (UnimplementedTripServiceServer) SearchTrips(context.Context, *SearchTripsRequest) (*SearchTripsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SearchTrips not implemented")
+}
+func (UnimplementedTripServiceServer) GetTrips(context.Context, *GetTripsRequest) (*SearchTripsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTrips not implemented")
+}
+func (UnimplementedTripServiceServer) GetTripsAgency(context.Context, *GetTripsRequest) (*SearchTripsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetTripsAgency not implemented")
+}
+func (UnimplementedTripServiceServer) ActivateTrip(context.Context, *ActivateTripRequest) (*ActivateTripResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ActivateTrip not implemented")
+}
+func (UnimplementedTripServiceServer) FinishTrip(context.Context, *FinishTripRequest) (*FinishTripResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FinishTrip not implemented")
 }
 func (UnimplementedTripServiceServer) mustEmbedUnimplementedTripServiceServer() {}
 
@@ -229,6 +293,78 @@ func _TripService_SearchTrips_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TripService_GetTrips_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTripsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TripServiceServer).GetTrips(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TripService_GetTrips_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TripServiceServer).GetTrips(ctx, req.(*GetTripsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TripService_GetTripsAgency_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetTripsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TripServiceServer).GetTripsAgency(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TripService_GetTripsAgency_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TripServiceServer).GetTripsAgency(ctx, req.(*GetTripsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TripService_ActivateTrip_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ActivateTripRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TripServiceServer).ActivateTrip(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TripService_ActivateTrip_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TripServiceServer).ActivateTrip(ctx, req.(*ActivateTripRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TripService_FinishTrip_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FinishTripRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TripServiceServer).FinishTrip(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TripService_FinishTrip_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TripServiceServer).FinishTrip(ctx, req.(*FinishTripRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // TripService_ServiceDesc is the grpc.ServiceDesc for TripService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -255,6 +391,22 @@ var TripService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SearchTrips",
 			Handler:    _TripService_SearchTrips_Handler,
+		},
+		{
+			MethodName: "GetTrips",
+			Handler:    _TripService_GetTrips_Handler,
+		},
+		{
+			MethodName: "GetTripsAgency",
+			Handler:    _TripService_GetTripsAgency_Handler,
+		},
+		{
+			MethodName: "ActivateTrip",
+			Handler:    _TripService_ActivateTrip_Handler,
+		},
+		{
+			MethodName: "FinishTrip",
+			Handler:    _TripService_FinishTrip_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
