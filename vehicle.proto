@@ -15,7 +15,19 @@ service VehicleService {
   rpc BlockVehicle (BlockVehicleRequest) returns (BlockVehicleResponse);
   rpc UnBlockVehicleByOwner (UnBlockVehicleByOwnerRequest) returns (UnBlockVehicleByOwnerResponse);
   rpc UnBlockVehicle (UnBlockVehicleRequest) returns (UnBlockVehicleResponse);
+  rpc MacthVehicleForTrip (MacthVehicleForTripRequest) returns (MacthVehicleForTripResponse);
 }
+message MacthVehicleForTripRequest{
+  string type = 1;
+  google.protobuf.Timestamp departure_time = 2;
+  int32 passengers_capacity = 3;
+  float price=4;
+}
+message MacthVehicleForTripResponse{
+  string vehicle_id=1;
+  float speed=2;
+}
+
 message BlockVehicleByOwnerRequest{
   string owner_id=1;
 }
@@ -48,6 +60,8 @@ message CreateVehicleRequest {
   int32 passengers_capacity = 4;
   string type = 5;  // Plane, Ship, Train, Bus
   google.protobuf.Timestamp date_of_manufacture = 6;
+  google.protobuf.Timestamp in_time = 7;
+  google.protobuf.Timestamp out_time = 8;
 }
 
 message CreateVehicleResponse {
@@ -68,6 +82,8 @@ message GetVehicleResponse {
   string status = 7; // ACTIVE, INACTIVE
   string type = 8;  // Plane, Ship, Train, Bus
   google.protobuf.Timestamp created_at = 9;
+  google.protobuf.Timestamp in_time = 10;
+  google.protobuf.Timestamp out_time = 11;
 }
 
 message UpdateVehicleRequest {
@@ -78,6 +94,8 @@ message UpdateVehicleRequest {
   int32 passengers_capacity = 5;
   string type = 6;  // Plane, Ship, Train, Bus
   google.protobuf.Timestamp date_of_manufacture = 7;
+  google.protobuf.Timestamp in_time = 8;
+  google.protobuf.Timestamp out_time = 9;
 }
 
 message UpdateVehicleResponse {
@@ -119,4 +137,6 @@ message Vehicle {
   string status = 7; // ACTIVE, INACTIVE
   string type = 8;  // Plane, Ship, Train, Bus
   google.protobuf.Timestamp created_at = 9;
+  google.protobuf.Timestamp in_time = 10;
+  google.protobuf.Timestamp out_time = 11;
 }
