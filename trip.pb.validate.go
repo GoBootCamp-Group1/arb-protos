@@ -709,6 +709,10 @@ func (m *CreateTripRequest) validate(all bool) error {
 
 	// no validation rules for TripType
 
+	// no validation rules for OriginStation
+
+	// no validation rules for DestinationStation
+
 	if len(errors) > 0 {
 		return CreateTripRequestMultiError(errors)
 	}
@@ -1157,6 +1161,10 @@ func (m *GetTripResponse) validate(all bool) error {
 
 	// no validation rules for CompanyName
 
+	// no validation rules for OriginStation
+
+	// no validation rules for DestinationStation
+
 	if len(errors) > 0 {
 		return GetTripResponseMultiError(errors)
 	}
@@ -1394,6 +1402,10 @@ func (m *UpdateTripRequest) validate(all bool) error {
 	// no validation rules for Status
 
 	// no validation rules for TripType
+
+	// no validation rules for OriginStation
+
+	// no validation rules for DestinationStation
 
 	if len(errors) > 0 {
 		return UpdateTripRequestMultiError(errors)
@@ -2319,6 +2331,10 @@ func (m *Trip) validate(all bool) error {
 	// no validation rules for Status
 
 	// no validation rules for TripType
+
+	// no validation rules for OriginStation
+
+	// no validation rules for DestinationStation
 
 	if len(errors) > 0 {
 		return TripMultiError(errors)

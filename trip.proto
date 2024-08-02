@@ -45,6 +45,8 @@ message CreateTripRequest {
   float tariff_agent = 12;
   string status = 13;
   string trip_type = 14;
+  string origin_station=15;
+  string destination_station=16;
 }
 
 message CreateTripResponse {
@@ -72,6 +74,8 @@ message GetTripResponse {
   string status = 14;
   string trip_type = 15;
   string company_name=16;
+  string origin_station=17;
+  string destination_station=18;
 }
 
 message UpdateTripRequest {
@@ -90,6 +94,8 @@ message UpdateTripRequest {
   float tariff_agent = 13;
   string status = 14;
   string trip_type = 15;
+  string origin_station=16;
+  string destination_station=17;
 }
 
 message UpdateTripResponse {
@@ -141,4 +147,6 @@ message Trip {
   float tariff_agent = 13;
   string status = 14;
   string trip_type = 15;
+  string origin_station=16;
+  string destination_station=17;
 }
