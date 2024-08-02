@@ -35,6 +35,841 @@ var (
 	_ = sort.Sort
 )
 
+// Validate checks the field values on BlockVehicleByOwnerRequest with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *BlockVehicleByOwnerRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on BlockVehicleByOwnerRequest with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// BlockVehicleByOwnerRequestMultiError, or nil if none found.
+func (m *BlockVehicleByOwnerRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *BlockVehicleByOwnerRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for OwnerId
+
+	if len(errors) > 0 {
+		return BlockVehicleByOwnerRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// BlockVehicleByOwnerRequestMultiError is an error wrapping multiple
+// validation errors returned by BlockVehicleByOwnerRequest.ValidateAll() if
+// the designated constraints aren't met.
+type BlockVehicleByOwnerRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m BlockVehicleByOwnerRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m BlockVehicleByOwnerRequestMultiError) AllErrors() []error { return m }
+
+// BlockVehicleByOwnerRequestValidationError is the validation error returned
+// by BlockVehicleByOwnerRequest.Validate if the designated constraints aren't met.
+type BlockVehicleByOwnerRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e BlockVehicleByOwnerRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e BlockVehicleByOwnerRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e BlockVehicleByOwnerRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e BlockVehicleByOwnerRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e BlockVehicleByOwnerRequestValidationError) ErrorName() string {
+	return "BlockVehicleByOwnerRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e BlockVehicleByOwnerRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sBlockVehicleByOwnerRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = BlockVehicleByOwnerRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = BlockVehicleByOwnerRequestValidationError{}
+
+// Validate checks the field values on BlockVehicleByOwnerResponse with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *BlockVehicleByOwnerResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on BlockVehicleByOwnerResponse with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// BlockVehicleByOwnerResponseMultiError, or nil if none found.
+func (m *BlockVehicleByOwnerResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *BlockVehicleByOwnerResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Status
+
+	if len(errors) > 0 {
+		return BlockVehicleByOwnerResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// BlockVehicleByOwnerResponseMultiError is an error wrapping multiple
+// validation errors returned by BlockVehicleByOwnerResponse.ValidateAll() if
+// the designated constraints aren't met.
+type BlockVehicleByOwnerResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m BlockVehicleByOwnerResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m BlockVehicleByOwnerResponseMultiError) AllErrors() []error { return m }
+
+// BlockVehicleByOwnerResponseValidationError is the validation error returned
+// by BlockVehicleByOwnerResponse.Validate if the designated constraints
+// aren't met.
+type BlockVehicleByOwnerResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e BlockVehicleByOwnerResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e BlockVehicleByOwnerResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e BlockVehicleByOwnerResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e BlockVehicleByOwnerResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e BlockVehicleByOwnerResponseValidationError) ErrorName() string {
+	return "BlockVehicleByOwnerResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e BlockVehicleByOwnerResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sBlockVehicleByOwnerResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = BlockVehicleByOwnerResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = BlockVehicleByOwnerResponseValidationError{}
+
+// Validate checks the field values on BlockVehicleRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *BlockVehicleRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on BlockVehicleRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// BlockVehicleRequestMultiError, or nil if none found.
+func (m *BlockVehicleRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *BlockVehicleRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for VehicleId
+
+	if len(errors) > 0 {
+		return BlockVehicleRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// BlockVehicleRequestMultiError is an error wrapping multiple validation
+// errors returned by BlockVehicleRequest.ValidateAll() if the designated
+// constraints aren't met.
+type BlockVehicleRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m BlockVehicleRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m BlockVehicleRequestMultiError) AllErrors() []error { return m }
+
+// BlockVehicleRequestValidationError is the validation error returned by
+// BlockVehicleRequest.Validate if the designated constraints aren't met.
+type BlockVehicleRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e BlockVehicleRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e BlockVehicleRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e BlockVehicleRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e BlockVehicleRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e BlockVehicleRequestValidationError) ErrorName() string {
+	return "BlockVehicleRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e BlockVehicleRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sBlockVehicleRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = BlockVehicleRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = BlockVehicleRequestValidationError{}
+
+// Validate checks the field values on BlockVehicleResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *BlockVehicleResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on BlockVehicleResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// BlockVehicleResponseMultiError, or nil if none found.
+func (m *BlockVehicleResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *BlockVehicleResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Status
+
+	if len(errors) > 0 {
+		return BlockVehicleResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// BlockVehicleResponseMultiError is an error wrapping multiple validation
+// errors returned by BlockVehicleResponse.ValidateAll() if the designated
+// constraints aren't met.
+type BlockVehicleResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m BlockVehicleResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m BlockVehicleResponseMultiError) AllErrors() []error { return m }
+
+// BlockVehicleResponseValidationError is the validation error returned by
+// BlockVehicleResponse.Validate if the designated constraints aren't met.
+type BlockVehicleResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e BlockVehicleResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e BlockVehicleResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e BlockVehicleResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e BlockVehicleResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e BlockVehicleResponseValidationError) ErrorName() string {
+	return "BlockVehicleResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e BlockVehicleResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sBlockVehicleResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = BlockVehicleResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = BlockVehicleResponseValidationError{}
+
+// Validate checks the field values on UnBlockVehicleByOwnerRequest with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *UnBlockVehicleByOwnerRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on UnBlockVehicleByOwnerRequest with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// UnBlockVehicleByOwnerRequestMultiError, or nil if none found.
+func (m *UnBlockVehicleByOwnerRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *UnBlockVehicleByOwnerRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for OwnerId
+
+	if len(errors) > 0 {
+		return UnBlockVehicleByOwnerRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// UnBlockVehicleByOwnerRequestMultiError is an error wrapping multiple
+// validation errors returned by UnBlockVehicleByOwnerRequest.ValidateAll() if
+// the designated constraints aren't met.
+type UnBlockVehicleByOwnerRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m UnBlockVehicleByOwnerRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m UnBlockVehicleByOwnerRequestMultiError) AllErrors() []error { return m }
+
+// UnBlockVehicleByOwnerRequestValidationError is the validation error returned
+// by UnBlockVehicleByOwnerRequest.Validate if the designated constraints
+// aren't met.
+type UnBlockVehicleByOwnerRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e UnBlockVehicleByOwnerRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e UnBlockVehicleByOwnerRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e UnBlockVehicleByOwnerRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e UnBlockVehicleByOwnerRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e UnBlockVehicleByOwnerRequestValidationError) ErrorName() string {
+	return "UnBlockVehicleByOwnerRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e UnBlockVehicleByOwnerRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sUnBlockVehicleByOwnerRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = UnBlockVehicleByOwnerRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = UnBlockVehicleByOwnerRequestValidationError{}
+
+// Validate checks the field values on UnBlockVehicleByOwnerResponse with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *UnBlockVehicleByOwnerResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on UnBlockVehicleByOwnerResponse with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the result is a list of violation errors wrapped in
+// UnBlockVehicleByOwnerResponseMultiError, or nil if none found.
+func (m *UnBlockVehicleByOwnerResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *UnBlockVehicleByOwnerResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Status
+
+	if len(errors) > 0 {
+		return UnBlockVehicleByOwnerResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// UnBlockVehicleByOwnerResponseMultiError is an error wrapping multiple
+// validation errors returned by UnBlockVehicleByOwnerResponse.ValidateAll()
+// if the designated constraints aren't met.
+type UnBlockVehicleByOwnerResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m UnBlockVehicleByOwnerResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m UnBlockVehicleByOwnerResponseMultiError) AllErrors() []error { return m }
+
+// UnBlockVehicleByOwnerResponseValidationError is the validation error
+// returned by UnBlockVehicleByOwnerResponse.Validate if the designated
+// constraints aren't met.
+type UnBlockVehicleByOwnerResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e UnBlockVehicleByOwnerResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e UnBlockVehicleByOwnerResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e UnBlockVehicleByOwnerResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e UnBlockVehicleByOwnerResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e UnBlockVehicleByOwnerResponseValidationError) ErrorName() string {
+	return "UnBlockVehicleByOwnerResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e UnBlockVehicleByOwnerResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sUnBlockVehicleByOwnerResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = UnBlockVehicleByOwnerResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = UnBlockVehicleByOwnerResponseValidationError{}
+
+// Validate checks the field values on UnBlockVehicleRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *UnBlockVehicleRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on UnBlockVehicleRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// UnBlockVehicleRequestMultiError, or nil if none found.
+func (m *UnBlockVehicleRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *UnBlockVehicleRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for VehicleId
+
+	if len(errors) > 0 {
+		return UnBlockVehicleRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// UnBlockVehicleRequestMultiError is an error wrapping multiple validation
+// errors returned by UnBlockVehicleRequest.ValidateAll() if the designated
+// constraints aren't met.
+type UnBlockVehicleRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m UnBlockVehicleRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m UnBlockVehicleRequestMultiError) AllErrors() []error { return m }
+
+// UnBlockVehicleRequestValidationError is the validation error returned by
+// UnBlockVehicleRequest.Validate if the designated constraints aren't met.
+type UnBlockVehicleRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e UnBlockVehicleRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e UnBlockVehicleRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e UnBlockVehicleRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e UnBlockVehicleRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e UnBlockVehicleRequestValidationError) ErrorName() string {
+	return "UnBlockVehicleRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e UnBlockVehicleRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sUnBlockVehicleRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = UnBlockVehicleRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = UnBlockVehicleRequestValidationError{}
+
+// Validate checks the field values on UnBlockVehicleResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *UnBlockVehicleResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on UnBlockVehicleResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// UnBlockVehicleResponseMultiError, or nil if none found.
+func (m *UnBlockVehicleResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *UnBlockVehicleResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Status
+
+	if len(errors) > 0 {
+		return UnBlockVehicleResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// UnBlockVehicleResponseMultiError is an error wrapping multiple validation
+// errors returned by UnBlockVehicleResponse.ValidateAll() if the designated
+// constraints aren't met.
+type UnBlockVehicleResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m UnBlockVehicleResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m UnBlockVehicleResponseMultiError) AllErrors() []error { return m }
+
+// UnBlockVehicleResponseValidationError is the validation error returned by
+// UnBlockVehicleResponse.Validate if the designated constraints aren't met.
+type UnBlockVehicleResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e UnBlockVehicleResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e UnBlockVehicleResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e UnBlockVehicleResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e UnBlockVehicleResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e UnBlockVehicleResponseValidationError) ErrorName() string {
+	return "UnBlockVehicleResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e UnBlockVehicleResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sUnBlockVehicleResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = UnBlockVehicleResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = UnBlockVehicleResponseValidationError{}
+
 // Validate checks the field values on CreateVehicleRequest with the rules
 // defined in the proto definition for this message. If any rules are
 // violated, the first error encountered is returned, or nil if there are no violations.

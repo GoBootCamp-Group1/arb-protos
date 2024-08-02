@@ -19,12 +19,16 @@ import (
 const _ = grpc.SupportPackageIsVersion8
 
 const (
-	VehicleService_CreateVehicle_FullMethodName       = "/vehicle.VehicleService/CreateVehicle"
-	VehicleService_GetVehicle_FullMethodName          = "/vehicle.VehicleService/GetVehicle"
-	VehicleService_UpdateVehicle_FullMethodName       = "/vehicle.VehicleService/UpdateVehicle"
-	VehicleService_DeleteVehicle_FullMethodName       = "/vehicle.VehicleService/DeleteVehicle"
-	VehicleService_ListVehicles_FullMethodName        = "/vehicle.VehicleService/ListVehicles"
-	VehicleService_ChangeVehicleStatus_FullMethodName = "/vehicle.VehicleService/ChangeVehicleStatus"
+	VehicleService_CreateVehicle_FullMethodName         = "/vehicle.VehicleService/CreateVehicle"
+	VehicleService_GetVehicle_FullMethodName            = "/vehicle.VehicleService/GetVehicle"
+	VehicleService_UpdateVehicle_FullMethodName         = "/vehicle.VehicleService/UpdateVehicle"
+	VehicleService_DeleteVehicle_FullMethodName         = "/vehicle.VehicleService/DeleteVehicle"
+	VehicleService_ListVehicles_FullMethodName          = "/vehicle.VehicleService/ListVehicles"
+	VehicleService_ChangeVehicleStatus_FullMethodName   = "/vehicle.VehicleService/ChangeVehicleStatus"
+	VehicleService_BlockVehicleByOwner_FullMethodName   = "/vehicle.VehicleService/BlockVehicleByOwner"
+	VehicleService_BlockVehicle_FullMethodName          = "/vehicle.VehicleService/BlockVehicle"
+	VehicleService_UnBlockVehicleByOwner_FullMethodName = "/vehicle.VehicleService/UnBlockVehicleByOwner"
+	VehicleService_UnBlockVehicle_FullMethodName        = "/vehicle.VehicleService/UnBlockVehicle"
 )
 
 // VehicleServiceClient is the client API for VehicleService service.
@@ -37,6 +41,10 @@ type VehicleServiceClient interface {
 	DeleteVehicle(ctx context.Context, in *DeleteVehicleRequest, opts ...grpc.CallOption) (*DeleteVehicleResponse, error)
 	ListVehicles(ctx context.Context, in *ListVehiclesRequest, opts ...grpc.CallOption) (*ListVehiclesResponse, error)
 	ChangeVehicleStatus(ctx context.Context, in *ChangeVehicleStatusRequest, opts ...grpc.CallOption) (*ChangeVehicleStatusResponse, error)
+	BlockVehicleByOwner(ctx context.Context, in *BlockVehicleByOwnerRequest, opts ...grpc.CallOption) (*BlockVehicleByOwnerResponse, error)
+	BlockVehicle(ctx context.Context, in *BlockVehicleRequest, opts ...grpc.CallOption) (*BlockVehicleResponse, error)
+	UnBlockVehicleByOwner(ctx context.Context, in *UnBlockVehicleByOwnerRequest, opts ...grpc.CallOption) (*UnBlockVehicleByOwnerResponse, error)
+	UnBlockVehicle(ctx context.Context, in *UnBlockVehicleRequest, opts ...grpc.CallOption) (*UnBlockVehicleResponse, error)
 }
 
 type vehicleServiceClient struct {
@@ -107,6 +115,46 @@ func (c *vehicleServiceClient) ChangeVehicleStatus(ctx context.Context, in *Chan
 	return out, nil
 }
 
+func (c *vehicleServiceClient) BlockVehicleByOwner(ctx context.Context, in *BlockVehicleByOwnerRequest, opts ...grpc.CallOption) (*BlockVehicleByOwnerResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(BlockVehicleByOwnerResponse)
+	err := c.cc.Invoke(ctx, VehicleService_BlockVehicleByOwner_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *vehicleServiceClient) BlockVehicle(ctx context.Context, in *BlockVehicleRequest, opts ...grpc.CallOption) (*BlockVehicleResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(BlockVehicleResponse)
+	err := c.cc.Invoke(ctx, VehicleService_BlockVehicle_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *vehicleServiceClient) UnBlockVehicleByOwner(ctx context.Context, in *UnBlockVehicleByOwnerRequest, opts ...grpc.CallOption) (*UnBlockVehicleByOwnerResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UnBlockVehicleByOwnerResponse)
+	err := c.cc.Invoke(ctx, VehicleService_UnBlockVehicleByOwner_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *vehicleServiceClient) UnBlockVehicle(ctx context.Context, in *UnBlockVehicleRequest, opts ...grpc.CallOption) (*UnBlockVehicleResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UnBlockVehicleResponse)
+	err := c.cc.Invoke(ctx, VehicleService_UnBlockVehicle_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // VehicleServiceServer is the server API for VehicleService service.
 // All implementations must embed UnimplementedVehicleServiceServer
 // for forward compatibility
@@ -117,6 +165,10 @@ type VehicleServiceServer interface {
 	DeleteVehicle(context.Context, *DeleteVehicleRequest) (*DeleteVehicleResponse, error)
 	ListVehicles(context.Context, *ListVehiclesRequest) (*ListVehiclesResponse, error)
 	ChangeVehicleStatus(context.Context, *ChangeVehicleStatusRequest) (*ChangeVehicleStatusResponse, error)
+	BlockVehicleByOwner(context.Context, *BlockVehicleByOwnerRequest) (*BlockVehicleByOwnerResponse, error)
+	BlockVehicle(context.Context, *BlockVehicleRequest) (*BlockVehicleResponse, error)
+	UnBlockVehicleByOwner(context.Context, *UnBlockVehicleByOwnerRequest) (*UnBlockVehicleByOwnerResponse, error)
+	UnBlockVehicle(context.Context, *UnBlockVehicleRequest) (*UnBlockVehicleResponse, error)
 	mustEmbedUnimplementedVehicleServiceServer()
 }
 
@@ -141,6 +193,18 @@ func (UnimplementedVehicleServiceServer) ListVehicles(context.Context, *ListVehi
 }
 func (UnimplementedVehicleServiceServer) ChangeVehicleStatus(context.Context, *ChangeVehicleStatusRequest) (*ChangeVehicleStatusResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangeVehicleStatus not implemented")
+}
+func (UnimplementedVehicleServiceServer) BlockVehicleByOwner(context.Context, *BlockVehicleByOwnerRequest) (*BlockVehicleByOwnerResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BlockVehicleByOwner not implemented")
+}
+func (UnimplementedVehicleServiceServer) BlockVehicle(context.Context, *BlockVehicleRequest) (*BlockVehicleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BlockVehicle not implemented")
+}
+func (UnimplementedVehicleServiceServer) UnBlockVehicleByOwner(context.Context, *UnBlockVehicleByOwnerRequest) (*UnBlockVehicleByOwnerResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UnBlockVehicleByOwner not implemented")
+}
+func (UnimplementedVehicleServiceServer) UnBlockVehicle(context.Context, *UnBlockVehicleRequest) (*UnBlockVehicleResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UnBlockVehicle not implemented")
 }
 func (UnimplementedVehicleServiceServer) mustEmbedUnimplementedVehicleServiceServer() {}
 
@@ -263,6 +327,78 @@ func _VehicleService_ChangeVehicleStatus_Handler(srv interface{}, ctx context.Co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _VehicleService_BlockVehicleByOwner_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BlockVehicleByOwnerRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VehicleServiceServer).BlockVehicleByOwner(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: VehicleService_BlockVehicleByOwner_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VehicleServiceServer).BlockVehicleByOwner(ctx, req.(*BlockVehicleByOwnerRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VehicleService_BlockVehicle_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BlockVehicleRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VehicleServiceServer).BlockVehicle(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: VehicleService_BlockVehicle_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VehicleServiceServer).BlockVehicle(ctx, req.(*BlockVehicleRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VehicleService_UnBlockVehicleByOwner_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UnBlockVehicleByOwnerRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VehicleServiceServer).UnBlockVehicleByOwner(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: VehicleService_UnBlockVehicleByOwner_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VehicleServiceServer).UnBlockVehicleByOwner(ctx, req.(*UnBlockVehicleByOwnerRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _VehicleService_UnBlockVehicle_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UnBlockVehicleRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VehicleServiceServer).UnBlockVehicle(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: VehicleService_UnBlockVehicle_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VehicleServiceServer).UnBlockVehicle(ctx, req.(*UnBlockVehicleRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // VehicleService_ServiceDesc is the grpc.ServiceDesc for VehicleService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -293,6 +429,22 @@ var VehicleService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ChangeVehicleStatus",
 			Handler:    _VehicleService_ChangeVehicleStatus_Handler,
+		},
+		{
+			MethodName: "BlockVehicleByOwner",
+			Handler:    _VehicleService_BlockVehicleByOwner_Handler,
+		},
+		{
+			MethodName: "BlockVehicle",
+			Handler:    _VehicleService_BlockVehicle_Handler,
+		},
+		{
+			MethodName: "UnBlockVehicleByOwner",
+			Handler:    _VehicleService_UnBlockVehicleByOwner_Handler,
+		},
+		{
+			MethodName: "UnBlockVehicle",
+			Handler:    _VehicleService_UnBlockVehicle_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
