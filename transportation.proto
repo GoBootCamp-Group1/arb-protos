@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package="github.com/GoBootCamp-Group1/arb-protos" ; ;
+option go_package="github.com/GoBootCamp-Group1/arb-protos" ;
 package transportation;
 
 service TransportationService {
@@ -10,8 +10,36 @@ service TransportationService {
   rpc DeleteTransportation (DeleteTransportationRequest) returns (DeleteTransportationResponse);
   rpc ListTransportationCompanies (ListTransportationCompaniesRequest) returns (ListTransportationCompaniesResponse);
   rpc ListTransportationsByOwner (ListTransportationsByOwnerRequest) returns (ListTransportationsByOwnerResponse);
+  rpc BlockTransportationsByOwner (BlockTransportationsByOwnerRequest) returns (BlockTransportationsByOwnerResponse);
+  rpc BlockTransportations (BlockTransportationsRequest) returns (BlockTransportationsResponse);
+  rpc UnBlockTransportationsByOwner (UnBlockTransportationsByOwnerRequest) returns (UnBlockTransportationsByOwnerResponse);
+  rpc UnBlockTransportations (UnBlockTransportationsRequest) returns (UnBlockTransportationsResponse);
+}
+message BlockTransportationsByOwnerRequest{
+  string owner_id=1;
+}
+message BlockTransportationsByOwnerResponse{
+  string status=1;
+}
+message BlockTransportationsRequest{
+  string transportation_id=1;
+}
+message BlockTransportationsResponse{
+  string status=1;
 }
 
+message UnBlockTransportationsByOwnerRequest{
+  string owner_id=1;
+}
+message UnBlockTransportationsByOwnerResponse{
+  string status=1;
+}
+message UnBlockTransportationsRequest{
+  string transportation_id=1;
+}
+message UnBlockTransportationsResponse{
+  string status=1;
+}
 message CreateTransportationRequest {
   string owner_id = 1;
   string name = 2;
