@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.4.0
 // - protoc             v5.27.2
-// source: api/grpc/proto/transportation.proto
+// source: transportation.proto
 
 package arb_protos
 
@@ -19,12 +19,16 @@ import (
 const _ = grpc.SupportPackageIsVersion8
 
 const (
-	TransportationService_CreateTransportation_FullMethodName        = "/transportation.TransportationService/CreateTransportation"
-	TransportationService_GetTransportation_FullMethodName           = "/transportation.TransportationService/GetTransportation"
-	TransportationService_UpdateTransportation_FullMethodName        = "/transportation.TransportationService/UpdateTransportation"
-	TransportationService_DeleteTransportation_FullMethodName        = "/transportation.TransportationService/DeleteTransportation"
-	TransportationService_ListTransportationCompanies_FullMethodName = "/transportation.TransportationService/ListTransportationCompanies"
-	TransportationService_ListTransportationsByOwner_FullMethodName  = "/transportation.TransportationService/ListTransportationsByOwner"
+	TransportationService_CreateTransportation_FullMethodName          = "/transportation.TransportationService/CreateTransportation"
+	TransportationService_GetTransportation_FullMethodName             = "/transportation.TransportationService/GetTransportation"
+	TransportationService_UpdateTransportation_FullMethodName          = "/transportation.TransportationService/UpdateTransportation"
+	TransportationService_DeleteTransportation_FullMethodName          = "/transportation.TransportationService/DeleteTransportation"
+	TransportationService_ListTransportationCompanies_FullMethodName   = "/transportation.TransportationService/ListTransportationCompanies"
+	TransportationService_ListTransportationsByOwner_FullMethodName    = "/transportation.TransportationService/ListTransportationsByOwner"
+	TransportationService_BlockTransportationsByOwner_FullMethodName   = "/transportation.TransportationService/BlockTransportationsByOwner"
+	TransportationService_BlockTransportations_FullMethodName          = "/transportation.TransportationService/BlockTransportations"
+	TransportationService_UnBlockTransportationsByOwner_FullMethodName = "/transportation.TransportationService/UnBlockTransportationsByOwner"
+	TransportationService_UnBlockTransportations_FullMethodName        = "/transportation.TransportationService/UnBlockTransportations"
 )
 
 // TransportationServiceClient is the client API for TransportationService service.
@@ -37,6 +41,10 @@ type TransportationServiceClient interface {
 	DeleteTransportation(ctx context.Context, in *DeleteTransportationRequest, opts ...grpc.CallOption) (*DeleteTransportationResponse, error)
 	ListTransportationCompanies(ctx context.Context, in *ListTransportationCompaniesRequest, opts ...grpc.CallOption) (*ListTransportationCompaniesResponse, error)
 	ListTransportationsByOwner(ctx context.Context, in *ListTransportationsByOwnerRequest, opts ...grpc.CallOption) (*ListTransportationsByOwnerResponse, error)
+	BlockTransportationsByOwner(ctx context.Context, in *BlockTransportationsByOwnerRequest, opts ...grpc.CallOption) (*BlockTransportationsByOwnerResponse, error)
+	BlockTransportations(ctx context.Context, in *BlockTransportationsRequest, opts ...grpc.CallOption) (*BlockTransportationsResponse, error)
+	UnBlockTransportationsByOwner(ctx context.Context, in *UnBlockTransportationsByOwnerRequest, opts ...grpc.CallOption) (*UnBlockTransportationsByOwnerResponse, error)
+	UnBlockTransportations(ctx context.Context, in *UnBlockTransportationsRequest, opts ...grpc.CallOption) (*UnBlockTransportationsResponse, error)
 }
 
 type transportationServiceClient struct {
@@ -107,6 +115,46 @@ func (c *transportationServiceClient) ListTransportationsByOwner(ctx context.Con
 	return out, nil
 }
 
+func (c *transportationServiceClient) BlockTransportationsByOwner(ctx context.Context, in *BlockTransportationsByOwnerRequest, opts ...grpc.CallOption) (*BlockTransportationsByOwnerResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(BlockTransportationsByOwnerResponse)
+	err := c.cc.Invoke(ctx, TransportationService_BlockTransportationsByOwner_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *transportationServiceClient) BlockTransportations(ctx context.Context, in *BlockTransportationsRequest, opts ...grpc.CallOption) (*BlockTransportationsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(BlockTransportationsResponse)
+	err := c.cc.Invoke(ctx, TransportationService_BlockTransportations_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *transportationServiceClient) UnBlockTransportationsByOwner(ctx context.Context, in *UnBlockTransportationsByOwnerRequest, opts ...grpc.CallOption) (*UnBlockTransportationsByOwnerResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UnBlockTransportationsByOwnerResponse)
+	err := c.cc.Invoke(ctx, TransportationService_UnBlockTransportationsByOwner_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *transportationServiceClient) UnBlockTransportations(ctx context.Context, in *UnBlockTransportationsRequest, opts ...grpc.CallOption) (*UnBlockTransportationsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UnBlockTransportationsResponse)
+	err := c.cc.Invoke(ctx, TransportationService_UnBlockTransportations_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TransportationServiceServer is the server API for TransportationService service.
 // All implementations must embed UnimplementedTransportationServiceServer
 // for forward compatibility
@@ -117,6 +165,10 @@ type TransportationServiceServer interface {
 	DeleteTransportation(context.Context, *DeleteTransportationRequest) (*DeleteTransportationResponse, error)
 	ListTransportationCompanies(context.Context, *ListTransportationCompaniesRequest) (*ListTransportationCompaniesResponse, error)
 	ListTransportationsByOwner(context.Context, *ListTransportationsByOwnerRequest) (*ListTransportationsByOwnerResponse, error)
+	BlockTransportationsByOwner(context.Context, *BlockTransportationsByOwnerRequest) (*BlockTransportationsByOwnerResponse, error)
+	BlockTransportations(context.Context, *BlockTransportationsRequest) (*BlockTransportationsResponse, error)
+	UnBlockTransportationsByOwner(context.Context, *UnBlockTransportationsByOwnerRequest) (*UnBlockTransportationsByOwnerResponse, error)
+	UnBlockTransportations(context.Context, *UnBlockTransportationsRequest) (*UnBlockTransportationsResponse, error)
 	mustEmbedUnimplementedTransportationServiceServer()
 }
 
@@ -141,6 +193,18 @@ func (UnimplementedTransportationServiceServer) ListTransportationCompanies(cont
 }
 func (UnimplementedTransportationServiceServer) ListTransportationsByOwner(context.Context, *ListTransportationsByOwnerRequest) (*ListTransportationsByOwnerResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListTransportationsByOwner not implemented")
+}
+func (UnimplementedTransportationServiceServer) BlockTransportationsByOwner(context.Context, *BlockTransportationsByOwnerRequest) (*BlockTransportationsByOwnerResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BlockTransportationsByOwner not implemented")
+}
+func (UnimplementedTransportationServiceServer) BlockTransportations(context.Context, *BlockTransportationsRequest) (*BlockTransportationsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BlockTransportations not implemented")
+}
+func (UnimplementedTransportationServiceServer) UnBlockTransportationsByOwner(context.Context, *UnBlockTransportationsByOwnerRequest) (*UnBlockTransportationsByOwnerResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UnBlockTransportationsByOwner not implemented")
+}
+func (UnimplementedTransportationServiceServer) UnBlockTransportations(context.Context, *UnBlockTransportationsRequest) (*UnBlockTransportationsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UnBlockTransportations not implemented")
 }
 func (UnimplementedTransportationServiceServer) mustEmbedUnimplementedTransportationServiceServer() {}
 
@@ -263,6 +327,78 @@ func _TransportationService_ListTransportationsByOwner_Handler(srv interface{}, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _TransportationService_BlockTransportationsByOwner_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BlockTransportationsByOwnerRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TransportationServiceServer).BlockTransportationsByOwner(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TransportationService_BlockTransportationsByOwner_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TransportationServiceServer).BlockTransportationsByOwner(ctx, req.(*BlockTransportationsByOwnerRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TransportationService_BlockTransportations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BlockTransportationsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TransportationServiceServer).BlockTransportations(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TransportationService_BlockTransportations_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TransportationServiceServer).BlockTransportations(ctx, req.(*BlockTransportationsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TransportationService_UnBlockTransportationsByOwner_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UnBlockTransportationsByOwnerRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TransportationServiceServer).UnBlockTransportationsByOwner(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TransportationService_UnBlockTransportationsByOwner_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TransportationServiceServer).UnBlockTransportationsByOwner(ctx, req.(*UnBlockTransportationsByOwnerRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _TransportationService_UnBlockTransportations_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UnBlockTransportationsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TransportationServiceServer).UnBlockTransportations(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: TransportationService_UnBlockTransportations_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TransportationServiceServer).UnBlockTransportations(ctx, req.(*UnBlockTransportationsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // TransportationService_ServiceDesc is the grpc.ServiceDesc for TransportationService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -294,7 +430,23 @@ var TransportationService_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "ListTransportationsByOwner",
 			Handler:    _TransportationService_ListTransportationsByOwner_Handler,
 		},
+		{
+			MethodName: "BlockTransportationsByOwner",
+			Handler:    _TransportationService_BlockTransportationsByOwner_Handler,
+		},
+		{
+			MethodName: "BlockTransportations",
+			Handler:    _TransportationService_BlockTransportations_Handler,
+		},
+		{
+			MethodName: "UnBlockTransportationsByOwner",
+			Handler:    _TransportationService_UnBlockTransportationsByOwner_Handler,
+		},
+		{
+			MethodName: "UnBlockTransportations",
+			Handler:    _TransportationService_UnBlockTransportations_Handler,
+		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "api/grpc/proto/transportation.proto",
+	Metadata: "transportation.proto",
 }

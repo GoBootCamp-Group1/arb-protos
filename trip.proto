@@ -1,5 +1,5 @@
 syntax = "proto3";
-option go_package="github.com/GoBootCamp-Group1/arb-protos" ; ;
+option go_package="github.com/GoBootCamp-Group1/arb-protos" ;
 package transportation;
 
 import "google/protobuf/timestamp.proto";

@@ -2,14 +2,13 @@
 // versions:
 // 	protoc-gen-go v1.34.2
 // 	protoc        v5.27.2
-// source: api/grpc/proto/technical_team.proto
+// source: technical_team.proto
 
 package arb_protos
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	_ "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
 )
@@ -33,7 +32,7 @@ type CreateTechnicalTeamRequest struct {
 func (x *CreateTechnicalTeamRequest) Reset() {
 	*x = CreateTechnicalTeamRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_grpc_proto_technical_team_proto_msgTypes[0]
+		mi := &file_technical_team_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -46,7 +45,7 @@ func (x *CreateTechnicalTeamRequest) String() string {
 func (*CreateTechnicalTeamRequest) ProtoMessage() {}
 
 func (x *CreateTechnicalTeamRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_grpc_proto_technical_team_proto_msgTypes[0]
+	mi := &file_technical_team_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -59,7 +58,7 @@ func (x *CreateTechnicalTeamRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateTechnicalTeamRequest.ProtoReflect.Descriptor instead.
 func (*CreateTechnicalTeamRequest) Descriptor() ([]byte, []int) {
-	return file_api_grpc_proto_technical_team_proto_rawDescGZIP(), []int{0}
+	return file_technical_team_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *CreateTechnicalTeamRequest) GetTripId() string {
@@ -87,7 +86,7 @@ type CreateTechnicalTeamResponse struct {
 func (x *CreateTechnicalTeamResponse) Reset() {
 	*x = CreateTechnicalTeamResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_grpc_proto_technical_team_proto_msgTypes[1]
+		mi := &file_technical_team_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -100,7 +99,7 @@ func (x *CreateTechnicalTeamResponse) String() string {
 func (*CreateTechnicalTeamResponse) ProtoMessage() {}
 
 func (x *CreateTechnicalTeamResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_grpc_proto_technical_team_proto_msgTypes[1]
+	mi := &file_technical_team_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -113,7 +112,7 @@ func (x *CreateTechnicalTeamResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateTechnicalTeamResponse.ProtoReflect.Descriptor instead.
 func (*CreateTechnicalTeamResponse) Descriptor() ([]byte, []int) {
-	return file_api_grpc_proto_technical_team_proto_rawDescGZIP(), []int{1}
+	return file_technical_team_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *CreateTechnicalTeamResponse) GetStatus() string {
@@ -134,7 +133,7 @@ type GetTechnicalTeamRequest struct {
 func (x *GetTechnicalTeamRequest) Reset() {
 	*x = GetTechnicalTeamRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_grpc_proto_technical_team_proto_msgTypes[2]
+		mi := &file_technical_team_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -147,7 +146,7 @@ func (x *GetTechnicalTeamRequest) String() string {
 func (*GetTechnicalTeamRequest) ProtoMessage() {}
 
 func (x *GetTechnicalTeamRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_grpc_proto_technical_team_proto_msgTypes[2]
+	mi := &file_technical_team_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -160,7 +159,7 @@ func (x *GetTechnicalTeamRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetTechnicalTeamRequest.ProtoReflect.Descriptor instead.
 func (*GetTechnicalTeamRequest) Descriptor() ([]byte, []int) {
-	return file_api_grpc_proto_technical_team_proto_rawDescGZIP(), []int{2}
+	return file_technical_team_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *GetTechnicalTeamRequest) GetId() string {
@@ -184,7 +183,7 @@ type GetTechnicalTeamResponse struct {
 func (x *GetTechnicalTeamResponse) Reset() {
 	*x = GetTechnicalTeamResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_grpc_proto_technical_team_proto_msgTypes[3]
+		mi := &file_technical_team_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -197,7 +196,7 @@ func (x *GetTechnicalTeamResponse) String() string {
 func (*GetTechnicalTeamResponse) ProtoMessage() {}
 
 func (x *GetTechnicalTeamResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_grpc_proto_technical_team_proto_msgTypes[3]
+	mi := &file_technical_team_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -210,7 +209,7 @@ func (x *GetTechnicalTeamResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetTechnicalTeamResponse.ProtoReflect.Descriptor instead.
 func (*GetTechnicalTeamResponse) Descriptor() ([]byte, []int) {
-	return file_api_grpc_proto_technical_team_proto_rawDescGZIP(), []int{3}
+	return file_technical_team_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *GetTechnicalTeamResponse) GetId() string {
@@ -255,7 +254,7 @@ type UpdateTechnicalTeamRequest struct {
 func (x *UpdateTechnicalTeamRequest) Reset() {
 	*x = UpdateTechnicalTeamRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_grpc_proto_technical_team_proto_msgTypes[4]
+		mi := &file_technical_team_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -268,7 +267,7 @@ func (x *UpdateTechnicalTeamRequest) String() string {
 func (*UpdateTechnicalTeamRequest) ProtoMessage() {}
 
 func (x *UpdateTechnicalTeamRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_grpc_proto_technical_team_proto_msgTypes[4]
+	mi := &file_technical_team_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -281,7 +280,7 @@ func (x *UpdateTechnicalTeamRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateTechnicalTeamRequest.ProtoReflect.Descriptor instead.
 func (*UpdateTechnicalTeamRequest) Descriptor() ([]byte, []int) {
-	return file_api_grpc_proto_technical_team_proto_rawDescGZIP(), []int{4}
+	return file_technical_team_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *UpdateTechnicalTeamRequest) GetId() string {
@@ -323,7 +322,7 @@ type UpdateTechnicalTeamResponse struct {
 func (x *UpdateTechnicalTeamResponse) Reset() {
 	*x = UpdateTechnicalTeamResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_grpc_proto_technical_team_proto_msgTypes[5]
+		mi := &file_technical_team_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -336,7 +335,7 @@ func (x *UpdateTechnicalTeamResponse) String() string {
 func (*UpdateTechnicalTeamResponse) ProtoMessage() {}
 
 func (x *UpdateTechnicalTeamResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_grpc_proto_technical_team_proto_msgTypes[5]
+	mi := &file_technical_team_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -349,7 +348,7 @@ func (x *UpdateTechnicalTeamResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateTechnicalTeamResponse.ProtoReflect.Descriptor instead.
 func (*UpdateTechnicalTeamResponse) Descriptor() ([]byte, []int) {
-	return file_api_grpc_proto_technical_team_proto_rawDescGZIP(), []int{5}
+	return file_technical_team_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *UpdateTechnicalTeamResponse) GetStatus() string {
@@ -370,7 +369,7 @@ type DeleteTechnicalTeamRequest struct {
 func (x *DeleteTechnicalTeamRequest) Reset() {
 	*x = DeleteTechnicalTeamRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_grpc_proto_technical_team_proto_msgTypes[6]
+		mi := &file_technical_team_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -383,7 +382,7 @@ func (x *DeleteTechnicalTeamRequest) String() string {
 func (*DeleteTechnicalTeamRequest) ProtoMessage() {}
 
 func (x *DeleteTechnicalTeamRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_grpc_proto_technical_team_proto_msgTypes[6]
+	mi := &file_technical_team_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -396,7 +395,7 @@ func (x *DeleteTechnicalTeamRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteTechnicalTeamRequest.ProtoReflect.Descriptor instead.
 func (*DeleteTechnicalTeamRequest) Descriptor() ([]byte, []int) {
-	return file_api_grpc_proto_technical_team_proto_rawDescGZIP(), []int{6}
+	return file_technical_team_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *DeleteTechnicalTeamRequest) GetId() string {
@@ -417,7 +416,7 @@ type DeleteTechnicalTeamResponse struct {
 func (x *DeleteTechnicalTeamResponse) Reset() {
 	*x = DeleteTechnicalTeamResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_api_grpc_proto_technical_team_proto_msgTypes[7]
+		mi := &file_technical_team_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -430,7 +429,7 @@ func (x *DeleteTechnicalTeamResponse) String() string {
 func (*DeleteTechnicalTeamResponse) ProtoMessage() {}
 
 func (x *DeleteTechnicalTeamResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_grpc_proto_technical_team_proto_msgTypes[7]
+	mi := &file_technical_team_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -443,7 +442,7 @@ func (x *DeleteTechnicalTeamResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteTechnicalTeamResponse.ProtoReflect.Descriptor instead.
 func (*DeleteTechnicalTeamResponse) Descriptor() ([]byte, []int) {
-	return file_api_grpc_proto_technical_team_proto_rawDescGZIP(), []int{7}
+	return file_technical_team_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *DeleteTechnicalTeamResponse) GetStatus() string {
@@ -453,15 +452,12 @@ func (x *DeleteTechnicalTeamResponse) GetStatus() string {
 	return ""
 }
 
-var File_api_grpc_proto_technical_team_proto protoreflect.FileDescriptor
+var File_technical_team_proto protoreflect.FileDescriptor
 
-var file_api_grpc_proto_technical_team_proto_rawDesc = []byte{
-	0x0a, 0x23, 0x61, 0x70, 0x69, 0x2f, 0x67, 0x72, 0x70, 0x63, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f,
-	0x2f, 0x74, 0x65, 0x63, 0x68, 0x6e, 0x69, 0x63, 0x61, 0x6c, 0x5f, 0x74, 0x65, 0x61, 0x6d, 0x2e,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0e, 0x74, 0x72, 0x61, 0x6e, 0x73, 0x70, 0x6f, 0x72, 0x74,
-	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x1a, 0x1f, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2f, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70,
-	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x4e, 0x0a, 0x1a, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65,
+var file_technical_team_proto_rawDesc = []byte{
+	0x0a, 0x14, 0x74, 0x65, 0x63, 0x68, 0x6e, 0x69, 0x63, 0x61, 0x6c, 0x5f, 0x74, 0x65, 0x61, 0x6d,
+	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0e, 0x74, 0x72, 0x61, 0x6e, 0x73, 0x70, 0x6f, 0x72,
+	0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x22, 0x4e, 0x0a, 0x1a, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65,
 	0x54, 0x65, 0x63, 0x68, 0x6e, 0x69, 0x63, 0x61, 0x6c, 0x54, 0x65, 0x61, 0x6d, 0x52, 0x65, 0x71,
 	0x75, 0x65, 0x73, 0x74, 0x12, 0x17, 0x0a, 0x07, 0x74, 0x72, 0x69, 0x70, 0x5f, 0x69, 0x64, 0x18,
 	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x74, 0x72, 0x69, 0x70, 0x49, 0x64, 0x12, 0x17, 0x0a,
@@ -526,23 +522,26 @@ var file_api_grpc_proto_technical_team_proto_rawDesc = []byte{
 	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x2b, 0x2e, 0x74, 0x72, 0x61, 0x6e, 0x73, 0x70, 0x6f, 0x72,
 	0x74, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x54, 0x65, 0x63,
 	0x68, 0x6e, 0x69, 0x63, 0x61, 0x6c, 0x54, 0x65, 0x61, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
-	0x73, 0x65, 0x42, 0x03, 0x5a, 0x01, 0x2f, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x73, 0x65, 0x42, 0x29, 0x5a, 0x27, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d,
+	0x2f, 0x47, 0x6f, 0x42, 0x6f, 0x6f, 0x74, 0x43, 0x61, 0x6d, 0x70, 0x2d, 0x47, 0x72, 0x6f, 0x75,
+	0x70, 0x31, 0x2f, 0x61, 0x72, 0x62, 0x2d, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x73, 0x62, 0x06, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
-	file_api_grpc_proto_technical_team_proto_rawDescOnce sync.Once
-	file_api_grpc_proto_technical_team_proto_rawDescData = file_api_grpc_proto_technical_team_proto_rawDesc
+	file_technical_team_proto_rawDescOnce sync.Once
+	file_technical_team_proto_rawDescData = file_technical_team_proto_rawDesc
 )
 
-func file_api_grpc_proto_technical_team_proto_rawDescGZIP() []byte {
-	file_api_grpc_proto_technical_team_proto_rawDescOnce.Do(func() {
-		file_api_grpc_proto_technical_team_proto_rawDescData = protoimpl.X.CompressGZIP(file_api_grpc_proto_technical_team_proto_rawDescData)
+func file_technical_team_proto_rawDescGZIP() []byte {
+	file_technical_team_proto_rawDescOnce.Do(func() {
+		file_technical_team_proto_rawDescData = protoimpl.X.CompressGZIP(file_technical_team_proto_rawDescData)
 	})
-	return file_api_grpc_proto_technical_team_proto_rawDescData
+	return file_technical_team_proto_rawDescData
 }
 
-var file_api_grpc_proto_technical_team_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
-var file_api_grpc_proto_technical_team_proto_goTypes = []any{
+var file_technical_team_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_technical_team_proto_goTypes = []any{
 	(*CreateTechnicalTeamRequest)(nil),  // 0: transportation.CreateTechnicalTeamRequest
 	(*CreateTechnicalTeamResponse)(nil), // 1: transportation.CreateTechnicalTeamResponse
 	(*GetTechnicalTeamRequest)(nil),     // 2: transportation.GetTechnicalTeamRequest
@@ -552,7 +551,7 @@ var file_api_grpc_proto_technical_team_proto_goTypes = []any{
 	(*DeleteTechnicalTeamRequest)(nil),  // 6: transportation.DeleteTechnicalTeamRequest
 	(*DeleteTechnicalTeamResponse)(nil), // 7: transportation.DeleteTechnicalTeamResponse
 }
-var file_api_grpc_proto_technical_team_proto_depIdxs = []int32{
+var file_technical_team_proto_depIdxs = []int32{
 	0, // 0: transportation.TechnicalTeamService.CreateTechnicalTeam:input_type -> transportation.CreateTechnicalTeamRequest
 	2, // 1: transportation.TechnicalTeamService.GetTechnicalTeam:input_type -> transportation.GetTechnicalTeamRequest
 	4, // 2: transportation.TechnicalTeamService.UpdateTechnicalTeam:input_type -> transportation.UpdateTechnicalTeamRequest
@@ -568,13 +567,13 @@ var file_api_grpc_proto_technical_team_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_api_grpc_proto_technical_team_proto_init() }
-func file_api_grpc_proto_technical_team_proto_init() {
-	if File_api_grpc_proto_technical_team_proto != nil {
+func init() { file_technical_team_proto_init() }
+func file_technical_team_proto_init() {
+	if File_technical_team_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_api_grpc_proto_technical_team_proto_msgTypes[0].Exporter = func(v any, i int) any {
+		file_technical_team_proto_msgTypes[0].Exporter = func(v any, i int) any {
 			switch v := v.(*CreateTechnicalTeamRequest); i {
 			case 0:
 				return &v.state
@@ -586,7 +585,7 @@ func file_api_grpc_proto_technical_team_proto_init() {
 				return nil
 			}
 		}
-		file_api_grpc_proto_technical_team_proto_msgTypes[1].Exporter = func(v any, i int) any {
+		file_technical_team_proto_msgTypes[1].Exporter = func(v any, i int) any {
 			switch v := v.(*CreateTechnicalTeamResponse); i {
 			case 0:
 				return &v.state
@@ -598,7 +597,7 @@ func file_api_grpc_proto_technical_team_proto_init() {
 				return nil
 			}
 		}
-		file_api_grpc_proto_technical_team_proto_msgTypes[2].Exporter = func(v any, i int) any {
+		file_technical_team_proto_msgTypes[2].Exporter = func(v any, i int) any {
 			switch v := v.(*GetTechnicalTeamRequest); i {
 			case 0:
 				return &v.state
@@ -610,7 +609,7 @@ func file_api_grpc_proto_technical_team_proto_init() {
 				return nil
 			}
 		}
-		file_api_grpc_proto_technical_team_proto_msgTypes[3].Exporter = func(v any, i int) any {
+		file_technical_team_proto_msgTypes[3].Exporter = func(v any, i int) any {
 			switch v := v.(*GetTechnicalTeamResponse); i {
 			case 0:
 				return &v.state
@@ -622,7 +621,7 @@ func file_api_grpc_proto_technical_team_proto_init() {
 				return nil
 			}
 		}
-		file_api_grpc_proto_technical_team_proto_msgTypes[4].Exporter = func(v any, i int) any {
+		file_technical_team_proto_msgTypes[4].Exporter = func(v any, i int) any {
 			switch v := v.(*UpdateTechnicalTeamRequest); i {
 			case 0:
 				return &v.state
@@ -634,7 +633,7 @@ func file_api_grpc_proto_technical_team_proto_init() {
 				return nil
 			}
 		}
-		file_api_grpc_proto_technical_team_proto_msgTypes[5].Exporter = func(v any, i int) any {
+		file_technical_team_proto_msgTypes[5].Exporter = func(v any, i int) any {
 			switch v := v.(*UpdateTechnicalTeamResponse); i {
 			case 0:
 				return &v.state
@@ -646,7 +645,7 @@ func file_api_grpc_proto_technical_team_proto_init() {
 				return nil
 			}
 		}
-		file_api_grpc_proto_technical_team_proto_msgTypes[6].Exporter = func(v any, i int) any {
+		file_technical_team_proto_msgTypes[6].Exporter = func(v any, i int) any {
 			switch v := v.(*DeleteTechnicalTeamRequest); i {
 			case 0:
 				return &v.state
@@ -658,7 +657,7 @@ func file_api_grpc_proto_technical_team_proto_init() {
 				return nil
 			}
 		}
-		file_api_grpc_proto_technical_team_proto_msgTypes[7].Exporter = func(v any, i int) any {
+		file_technical_team_proto_msgTypes[7].Exporter = func(v any, i int) any {
 			switch v := v.(*DeleteTechnicalTeamResponse); i {
 			case 0:
 				return &v.state
@@ -675,18 +674,18 @@ func file_api_grpc_proto_technical_team_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_api_grpc_proto_technical_team_proto_rawDesc,
+			RawDescriptor: file_technical_team_proto_rawDesc,
 			NumEnums:      0,
 			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_api_grpc_proto_technical_team_proto_goTypes,
-		DependencyIndexes: file_api_grpc_proto_technical_team_proto_depIdxs,
-		MessageInfos:      file_api_grpc_proto_technical_team_proto_msgTypes,
+		GoTypes:           file_technical_team_proto_goTypes,
+		DependencyIndexes: file_technical_team_proto_depIdxs,
+		MessageInfos:      file_technical_team_proto_msgTypes,
 	}.Build()
-	File_api_grpc_proto_technical_team_proto = out.File
-	file_api_grpc_proto_technical_team_proto_rawDesc = nil
-	file_api_grpc_proto_technical_team_proto_goTypes = nil
-	file_api_grpc_proto_technical_team_proto_depIdxs = nil
+	File_technical_team_proto = out.File
+	file_technical_team_proto_rawDesc = nil
+	file_technical_team_proto_goTypes = nil
+	file_technical_team_proto_depIdxs = nil
 }

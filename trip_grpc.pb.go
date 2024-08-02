@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.4.0
 // - protoc             v5.27.2
-// source: api/grpc/proto/trip.proto
+// source: trip.proto
 
 package arb_protos
 
@@ -258,5 +258,5 @@ var TripService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "api/grpc/proto/trip.proto",
+	Metadata: "trip.proto",
 }

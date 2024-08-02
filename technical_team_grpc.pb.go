@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.4.0
 // - protoc             v5.27.2
-// source: api/grpc/proto/technical_team.proto
+// source: technical_team.proto
 
 package arb_protos
 
@@ -220,5 +220,5 @@ var TechnicalTeamService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "api/grpc/proto/technical_team.proto",
+	Metadata: "technical_team.proto",
 }
