@@ -29,6 +29,7 @@ const (
 	VehicleService_BlockVehicle_FullMethodName          = "/vehicle.VehicleService/BlockVehicle"
 	VehicleService_UnBlockVehicleByOwner_FullMethodName = "/vehicle.VehicleService/UnBlockVehicleByOwner"
 	VehicleService_UnBlockVehicle_FullMethodName        = "/vehicle.VehicleService/UnBlockVehicle"
+	VehicleService_MacthVehicleForTrip_FullMethodName   = "/vehicle.VehicleService/MacthVehicleForTrip"
 )
 
 // VehicleServiceClient is the client API for VehicleService service.
@@ -45,6 +46,7 @@ type VehicleServiceClient interface {
 	BlockVehicle(ctx context.Context, in *BlockVehicleRequest, opts ...grpc.CallOption) (*BlockVehicleResponse, error)
 	UnBlockVehicleByOwner(ctx context.Context, in *UnBlockVehicleByOwnerRequest, opts ...grpc.CallOption) (*UnBlockVehicleByOwnerResponse, error)
 	UnBlockVehicle(ctx context.Context, in *UnBlockVehicleRequest, opts ...grpc.CallOption) (*UnBlockVehicleResponse, error)
+	MacthVehicleForTrip(ctx context.Context, in *MacthVehicleForTripRequest, opts ...grpc.CallOption) (*MacthVehicleForTripResponse, error)
 }
 
 type vehicleServiceClient struct {
@@ -155,6 +157,16 @@ func (c *vehicleServiceClient) UnBlockVehicle(ctx context.Context, in *UnBlockVe
 	return out, nil
 }
 
+func (c *vehicleServiceClient) MacthVehicleForTrip(ctx context.Context, in *MacthVehicleForTripRequest, opts ...grpc.CallOption) (*MacthVehicleForTripResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(MacthVehicleForTripResponse)
+	err := c.cc.Invoke(ctx, VehicleService_MacthVehicleForTrip_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // VehicleServiceServer is the server API for VehicleService service.
 // All implementations must embed UnimplementedVehicleServiceServer
 // for forward compatibility
@@ -169,6 +181,7 @@ type VehicleServiceServer interface {
 	BlockVehicle(context.Context, *BlockVehicleRequest) (*BlockVehicleResponse, error)
 	UnBlockVehicleByOwner(context.Context, *UnBlockVehicleByOwnerRequest) (*UnBlockVehicleByOwnerResponse, error)
 	UnBlockVehicle(context.Context, *UnBlockVehicleRequest) (*UnBlockVehicleResponse, error)
+	MacthVehicleForTrip(context.Context, *MacthVehicleForTripRequest) (*MacthVehicleForTripResponse, error)
 	mustEmbedUnimplementedVehicleServiceServer()
 }
 
@@ -205,6 +218,9 @@ func (UnimplementedVehicleServiceServer) UnBlockVehicleByOwner(context.Context, 
 }
 func (UnimplementedVehicleServiceServer) UnBlockVehicle(context.Context, *UnBlockVehicleRequest) (*UnBlockVehicleResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UnBlockVehicle not implemented")
+}
+func (UnimplementedVehicleServiceServer) MacthVehicleForTrip(context.Context, *MacthVehicleForTripRequest) (*MacthVehicleForTripResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method MacthVehicleForTrip not implemented")
 }
 func (UnimplementedVehicleServiceServer) mustEmbedUnimplementedVehicleServiceServer() {}
 
@@ -399,6 +415,24 @@ func _VehicleService_UnBlockVehicle_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _VehicleService_MacthVehicleForTrip_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MacthVehicleForTripRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(VehicleServiceServer).MacthVehicleForTrip(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: VehicleService_MacthVehicleForTrip_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(VehicleServiceServer).MacthVehicleForTrip(ctx, req.(*MacthVehicleForTripRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // VehicleService_ServiceDesc is the grpc.ServiceDesc for VehicleService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -445,6 +479,10 @@ var VehicleService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UnBlockVehicle",
 			Handler:    _VehicleService_UnBlockVehicle_Handler,
+		},
+		{
+			MethodName: "MacthVehicleForTrip",
+			Handler:    _VehicleService_MacthVehicleForTrip_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

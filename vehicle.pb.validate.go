@@ -35,6 +35,250 @@ var (
 	_ = sort.Sort
 )
 
+// Validate checks the field values on MacthVehicleForTripRequest with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *MacthVehicleForTripRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on MacthVehicleForTripRequest with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// MacthVehicleForTripRequestMultiError, or nil if none found.
+func (m *MacthVehicleForTripRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *MacthVehicleForTripRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Type
+
+	if all {
+		switch v := interface{}(m.GetDepartureTime()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, MacthVehicleForTripRequestValidationError{
+					field:  "DepartureTime",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, MacthVehicleForTripRequestValidationError{
+					field:  "DepartureTime",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetDepartureTime()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return MacthVehicleForTripRequestValidationError{
+				field:  "DepartureTime",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	// no validation rules for PassengersCapacity
+
+	// no validation rules for Price
+
+	if len(errors) > 0 {
+		return MacthVehicleForTripRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// MacthVehicleForTripRequestMultiError is an error wrapping multiple
+// validation errors returned by MacthVehicleForTripRequest.ValidateAll() if
+// the designated constraints aren't met.
+type MacthVehicleForTripRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m MacthVehicleForTripRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m MacthVehicleForTripRequestMultiError) AllErrors() []error { return m }
+
+// MacthVehicleForTripRequestValidationError is the validation error returned
+// by MacthVehicleForTripRequest.Validate if the designated constraints aren't met.
+type MacthVehicleForTripRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e MacthVehicleForTripRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e MacthVehicleForTripRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e MacthVehicleForTripRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e MacthVehicleForTripRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e MacthVehicleForTripRequestValidationError) ErrorName() string {
+	return "MacthVehicleForTripRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e MacthVehicleForTripRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sMacthVehicleForTripRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = MacthVehicleForTripRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = MacthVehicleForTripRequestValidationError{}
+
+// Validate checks the field values on MacthVehicleForTripResponse with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *MacthVehicleForTripResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on MacthVehicleForTripResponse with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// MacthVehicleForTripResponseMultiError, or nil if none found.
+func (m *MacthVehicleForTripResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *MacthVehicleForTripResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for VehicleId
+
+	// no validation rules for Speed
+
+	if len(errors) > 0 {
+		return MacthVehicleForTripResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// MacthVehicleForTripResponseMultiError is an error wrapping multiple
+// validation errors returned by MacthVehicleForTripResponse.ValidateAll() if
+// the designated constraints aren't met.
+type MacthVehicleForTripResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m MacthVehicleForTripResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m MacthVehicleForTripResponseMultiError) AllErrors() []error { return m }
+
+// MacthVehicleForTripResponseValidationError is the validation error returned
+// by MacthVehicleForTripResponse.Validate if the designated constraints
+// aren't met.
+type MacthVehicleForTripResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e MacthVehicleForTripResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e MacthVehicleForTripResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e MacthVehicleForTripResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e MacthVehicleForTripResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e MacthVehicleForTripResponseValidationError) ErrorName() string {
+	return "MacthVehicleForTripResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e MacthVehicleForTripResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sMacthVehicleForTripResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = MacthVehicleForTripResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = MacthVehicleForTripResponseValidationError{}
+
 // Validate checks the field values on BlockVehicleByOwnerRequest with the
 // rules defined in the proto definition for this message. If any rules are
 // violated, the first error encountered is returned, or nil if there are no violations.
@@ -931,6 +1175,64 @@ func (m *CreateVehicleRequest) validate(all bool) error {
 		}
 	}
 
+	if all {
+		switch v := interface{}(m.GetInTime()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, CreateVehicleRequestValidationError{
+					field:  "InTime",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, CreateVehicleRequestValidationError{
+					field:  "InTime",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetInTime()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return CreateVehicleRequestValidationError{
+				field:  "InTime",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if all {
+		switch v := interface{}(m.GetOutTime()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, CreateVehicleRequestValidationError{
+					field:  "OutTime",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, CreateVehicleRequestValidationError{
+					field:  "OutTime",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetOutTime()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return CreateVehicleRequestValidationError{
+				field:  "OutTime",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
 	if len(errors) > 0 {
 		return CreateVehicleRequestMultiError(errors)
 	}
@@ -1313,6 +1615,64 @@ func (m *GetVehicleResponse) validate(all bool) error {
 		}
 	}
 
+	if all {
+		switch v := interface{}(m.GetInTime()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, GetVehicleResponseValidationError{
+					field:  "InTime",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, GetVehicleResponseValidationError{
+					field:  "InTime",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetInTime()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return GetVehicleResponseValidationError{
+				field:  "InTime",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if all {
+		switch v := interface{}(m.GetOutTime()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, GetVehicleResponseValidationError{
+					field:  "OutTime",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, GetVehicleResponseValidationError{
+					field:  "OutTime",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetOutTime()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return GetVehicleResponseValidationError{
+				field:  "OutTime",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
 	if len(errors) > 0 {
 		return GetVehicleResponseMultiError(errors)
 	}
@@ -1450,6 +1810,64 @@ func (m *UpdateVehicleRequest) validate(all bool) error {
 		if err := v.Validate(); err != nil {
 			return UpdateVehicleRequestValidationError{
 				field:  "DateOfManufacture",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if all {
+		switch v := interface{}(m.GetInTime()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, UpdateVehicleRequestValidationError{
+					field:  "InTime",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, UpdateVehicleRequestValidationError{
+					field:  "InTime",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetInTime()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return UpdateVehicleRequestValidationError{
+				field:  "InTime",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if all {
+		switch v := interface{}(m.GetOutTime()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, UpdateVehicleRequestValidationError{
+					field:  "OutTime",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, UpdateVehicleRequestValidationError{
+					field:  "OutTime",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetOutTime()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return UpdateVehicleRequestValidationError{
+				field:  "OutTime",
 				reason: "embedded message failed validation",
 				cause:  err,
 			}
@@ -2386,6 +2804,64 @@ func (m *Vehicle) validate(all bool) error {
 		if err := v.Validate(); err != nil {
 			return VehicleValidationError{
 				field:  "CreatedAt",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if all {
+		switch v := interface{}(m.GetInTime()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, VehicleValidationError{
+					field:  "InTime",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, VehicleValidationError{
+					field:  "InTime",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetInTime()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return VehicleValidationError{
+				field:  "InTime",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if all {
+		switch v := interface{}(m.GetOutTime()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, VehicleValidationError{
+					field:  "OutTime",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, VehicleValidationError{
+					field:  "OutTime",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetOutTime()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return VehicleValidationError{
+				field:  "OutTime",
 				reason: "embedded message failed validation",
 				cause:  err,
 			}
