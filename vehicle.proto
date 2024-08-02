@@ -11,8 +11,36 @@ service VehicleService {
   rpc DeleteVehicle (DeleteVehicleRequest) returns (DeleteVehicleResponse);
   rpc ListVehicles (ListVehiclesRequest) returns (ListVehiclesResponse);
   rpc ChangeVehicleStatus (ChangeVehicleStatusRequest) returns (ChangeVehicleStatusResponse);
+  rpc BlockVehicleByOwner (BlockVehicleByOwnerRequest) returns (BlockVehicleByOwnerResponse);
+  rpc BlockVehicle (BlockVehicleRequest) returns (BlockVehicleResponse);
+  rpc UnBlockVehicleByOwner (UnBlockVehicleByOwnerRequest) returns (UnBlockVehicleByOwnerResponse);
+  rpc UnBlockVehicle (UnBlockVehicleRequest) returns (UnBlockVehicleResponse);
+}
+message BlockVehicleByOwnerRequest{
+  string owner_id=1;
+}
+message BlockVehicleByOwnerResponse{
+  string status=1;
+}
+message BlockVehicleRequest{
+  string Vehicle_id=1;
+}
+message BlockVehicleResponse{
+  string status=1;
 }
 
+message UnBlockVehicleByOwnerRequest{
+  string owner_id=1;
+}
+message UnBlockVehicleByOwnerResponse{
+  string status=1;
+}
+message UnBlockVehicleRequest{
+  string Vehicle_id=1;
+}
+message UnBlockVehicleResponse{
+  string status=1;
+}
 message CreateVehicleRequest {
   string owner_id = 1;
   float speed = 2;
