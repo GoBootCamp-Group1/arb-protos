@@ -3,7 +3,6 @@ syntax = "proto3";
 package city;
 
 option go_package = "github.com/GoBootCamp-Group1/arb-protos";
-import "google/protobuf/timestamp.proto";
 import "station.proto";
 
 service WayService {
@@ -13,15 +12,21 @@ service WayService {
   rpc GetWayByDestination(GetWayByDestinationRequest) returns (GetWaysResponse);
   rpc UpdateWay(Way) returns (WayResponse);
   rpc DeleteWay(GetWayByIDRequest) returns (DeleteWayResponse);
-  rpc ValidateMapAndReturnArivalTime(ValidateMapAndReturnArivalTimeRequest) returns (ValidateMapAndReturnArivalTimeResponse);
+  rpc ValidateMapAndReturnArivalTime(ValidateMapAndReturnArrivalTimeRequest) returns (ValidateMapAndReturnArrivalTimeResponse);
 }
-message ValidateMapAndReturnArivalTimeRequest{
-  string origin_station_id=1;
-  string destination_station_id=2;
-  float speed=4;
+message ValidateMapAndReturnArrivalTimeRequest {
+  string origin_station_id = 1;
+  string destination_station_id = 2;
+  float speed = 4;
 }
-message ValidateMapAndReturnArivalTimeResponse{
-  google.protobuf.Timestamp arrival_time = 1;
+
+message ValidateMapAndReturnArrivalTimeResponse {
+  bool success = 1;
+  ValidateMapAndReturnArrivalTime data = 2;
+}
+
+message ValidateMapAndReturnArrivalTime {
+  float arrival_time = 1;
 }
 
 message Way {

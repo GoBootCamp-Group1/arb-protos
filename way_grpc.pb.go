@@ -38,7 +38,7 @@ type WayServiceClient interface {
 	GetWayByDestination(ctx context.Context, in *GetWayByDestinationRequest, opts ...grpc.CallOption) (*GetWaysResponse, error)
 	UpdateWay(ctx context.Context, in *Way, opts ...grpc.CallOption) (*WayResponse, error)
 	DeleteWay(ctx context.Context, in *GetWayByIDRequest, opts ...grpc.CallOption) (*DeleteWayResponse, error)
-	ValidateMapAndReturnArivalTime(ctx context.Context, in *ValidateMapAndReturnArivalTimeRequest, opts ...grpc.CallOption) (*ValidateMapAndReturnArivalTimeResponse, error)
+	ValidateMapAndReturnArivalTime(ctx context.Context, in *ValidateMapAndReturnArrivalTimeRequest, opts ...grpc.CallOption) (*ValidateMapAndReturnArrivalTimeResponse, error)
 }
 
 type wayServiceClient struct {
@@ -109,9 +109,9 @@ func (c *wayServiceClient) DeleteWay(ctx context.Context, in *GetWayByIDRequest,
 	return out, nil
 }
 
-func (c *wayServiceClient) ValidateMapAndReturnArivalTime(ctx context.Context, in *ValidateMapAndReturnArivalTimeRequest, opts ...grpc.CallOption) (*ValidateMapAndReturnArivalTimeResponse, error) {
+func (c *wayServiceClient) ValidateMapAndReturnArivalTime(ctx context.Context, in *ValidateMapAndReturnArrivalTimeRequest, opts ...grpc.CallOption) (*ValidateMapAndReturnArrivalTimeResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ValidateMapAndReturnArivalTimeResponse)
+	out := new(ValidateMapAndReturnArrivalTimeResponse)
 	err := c.cc.Invoke(ctx, WayService_ValidateMapAndReturnArivalTime_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -129,7 +129,7 @@ type WayServiceServer interface {
 	GetWayByDestination(context.Context, *GetWayByDestinationRequest) (*GetWaysResponse, error)
 	UpdateWay(context.Context, *Way) (*WayResponse, error)
 	DeleteWay(context.Context, *GetWayByIDRequest) (*DeleteWayResponse, error)
-	ValidateMapAndReturnArivalTime(context.Context, *ValidateMapAndReturnArivalTimeRequest) (*ValidateMapAndReturnArivalTimeResponse, error)
+	ValidateMapAndReturnArivalTime(context.Context, *ValidateMapAndReturnArrivalTimeRequest) (*ValidateMapAndReturnArrivalTimeResponse, error)
 	mustEmbedUnimplementedWayServiceServer()
 }
 
@@ -155,7 +155,7 @@ func (UnimplementedWayServiceServer) UpdateWay(context.Context, *Way) (*WayRespo
 func (UnimplementedWayServiceServer) DeleteWay(context.Context, *GetWayByIDRequest) (*DeleteWayResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteWay not implemented")
 }
-func (UnimplementedWayServiceServer) ValidateMapAndReturnArivalTime(context.Context, *ValidateMapAndReturnArivalTimeRequest) (*ValidateMapAndReturnArivalTimeResponse, error) {
+func (UnimplementedWayServiceServer) ValidateMapAndReturnArivalTime(context.Context, *ValidateMapAndReturnArrivalTimeRequest) (*ValidateMapAndReturnArrivalTimeResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ValidateMapAndReturnArivalTime not implemented")
 }
 func (UnimplementedWayServiceServer) mustEmbedUnimplementedWayServiceServer() {}
@@ -280,7 +280,7 @@ func _WayService_DeleteWay_Handler(srv interface{}, ctx context.Context, dec fun
 }
 
 func _WayService_ValidateMapAndReturnArivalTime_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ValidateMapAndReturnArivalTimeRequest)
+	in := new(ValidateMapAndReturnArrivalTimeRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -292,7 +292,7 @@ func _WayService_ValidateMapAndReturnArivalTime_Handler(srv interface{}, ctx con
 		FullMethod: WayService_ValidateMapAndReturnArivalTime_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(WayServiceServer).ValidateMapAndReturnArivalTime(ctx, req.(*ValidateMapAndReturnArivalTimeRequest))
+		return srv.(WayServiceServer).ValidateMapAndReturnArivalTime(ctx, req.(*ValidateMapAndReturnArrivalTimeRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
