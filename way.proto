@@ -16,9 +16,9 @@ service WayService {
   rpc ValidateMapAndReturnArivalTime(ValidateMapAndReturnArivalTimeRequest) returns (ValidateMapAndReturnArivalTimeResponse);
 }
 message ValidateMapAndReturnArivalTimeRequest{
-  string origin_station_id=1;
-  string destination_station_id=2;
-  float speed=4;
+  string origin_station_id = 1;
+  string destination_station_id = 2;
+  float speed = 4;
 }
 message ValidateMapAndReturnArivalTimeResponse{
   google.protobuf.Timestamp arrival_time = 1;
