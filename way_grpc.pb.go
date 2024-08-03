@@ -19,12 +19,13 @@ import (
 const _ = grpc.SupportPackageIsVersion8
 
 const (
-	WayService_CreateWay_FullMethodName           = "/city.WayService/CreateWay"
-	WayService_GetWay_FullMethodName              = "/city.WayService/GetWay"
-	WayService_GetWayByStation_FullMethodName     = "/city.WayService/GetWayByStation"
-	WayService_GetWayByDestination_FullMethodName = "/city.WayService/GetWayByDestination"
-	WayService_UpdateWay_FullMethodName           = "/city.WayService/UpdateWay"
-	WayService_DeleteWay_FullMethodName           = "/city.WayService/DeleteWay"
+	WayService_CreateWay_FullMethodName                      = "/city.WayService/CreateWay"
+	WayService_GetWay_FullMethodName                         = "/city.WayService/GetWay"
+	WayService_GetWayByStation_FullMethodName                = "/city.WayService/GetWayByStation"
+	WayService_GetWayByDestination_FullMethodName            = "/city.WayService/GetWayByDestination"
+	WayService_UpdateWay_FullMethodName                      = "/city.WayService/UpdateWay"
+	WayService_DeleteWay_FullMethodName                      = "/city.WayService/DeleteWay"
+	WayService_ValidateMapAndReturnArivalTime_FullMethodName = "/city.WayService/ValidateMapAndReturnArivalTime"
 )
 
 // WayServiceClient is the client API for WayService service.
@@ -37,6 +38,7 @@ type WayServiceClient interface {
 	GetWayByDestination(ctx context.Context, in *GetWayByDestinationRequest, opts ...grpc.CallOption) (*GetWaysResponse, error)
 	UpdateWay(ctx context.Context, in *Way, opts ...grpc.CallOption) (*WayResponse, error)
 	DeleteWay(ctx context.Context, in *GetWayByIDRequest, opts ...grpc.CallOption) (*DeleteWayResponse, error)
+	ValidateMapAndReturnArivalTime(ctx context.Context, in *ValidateMapAndReturnArivalTimeRequest, opts ...grpc.CallOption) (*ValidateMapAndReturnArivalTimeResponse, error)
 }
 
 type wayServiceClient struct {
@@ -107,6 +109,16 @@ func (c *wayServiceClient) DeleteWay(ctx context.Context, in *GetWayByIDRequest,
 	return out, nil
 }
 
+func (c *wayServiceClient) ValidateMapAndReturnArivalTime(ctx context.Context, in *ValidateMapAndReturnArivalTimeRequest, opts ...grpc.CallOption) (*ValidateMapAndReturnArivalTimeResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ValidateMapAndReturnArivalTimeResponse)
+	err := c.cc.Invoke(ctx, WayService_ValidateMapAndReturnArivalTime_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // WayServiceServer is the server API for WayService service.
 // All implementations must embed UnimplementedWayServiceServer
 // for forward compatibility
@@ -117,6 +129,7 @@ type WayServiceServer interface {
 	GetWayByDestination(context.Context, *GetWayByDestinationRequest) (*GetWaysResponse, error)
 	UpdateWay(context.Context, *Way) (*WayResponse, error)
 	DeleteWay(context.Context, *GetWayByIDRequest) (*DeleteWayResponse, error)
+	ValidateMapAndReturnArivalTime(context.Context, *ValidateMapAndReturnArivalTimeRequest) (*ValidateMapAndReturnArivalTimeResponse, error)
 	mustEmbedUnimplementedWayServiceServer()
 }
 
@@ -141,6 +154,9 @@ func (UnimplementedWayServiceServer) UpdateWay(context.Context, *Way) (*WayRespo
 }
 func (UnimplementedWayServiceServer) DeleteWay(context.Context, *GetWayByIDRequest) (*DeleteWayResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteWay not implemented")
+}
+func (UnimplementedWayServiceServer) ValidateMapAndReturnArivalTime(context.Context, *ValidateMapAndReturnArivalTimeRequest) (*ValidateMapAndReturnArivalTimeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ValidateMapAndReturnArivalTime not implemented")
 }
 func (UnimplementedWayServiceServer) mustEmbedUnimplementedWayServiceServer() {}
 
@@ -263,6 +279,24 @@ func _WayService_DeleteWay_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
+func _WayService_ValidateMapAndReturnArivalTime_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ValidateMapAndReturnArivalTimeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WayServiceServer).ValidateMapAndReturnArivalTime(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: WayService_ValidateMapAndReturnArivalTime_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WayServiceServer).ValidateMapAndReturnArivalTime(ctx, req.(*ValidateMapAndReturnArivalTimeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // WayService_ServiceDesc is the grpc.ServiceDesc for WayService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -293,6 +327,10 @@ var WayService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteWay",
 			Handler:    _WayService_DeleteWay_Handler,
+		},
+		{
+			MethodName: "ValidateMapAndReturnArivalTime",
+			Handler:    _WayService_ValidateMapAndReturnArivalTime_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
