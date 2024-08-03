@@ -57,9 +57,27 @@ func (m *CreateRoleRequest) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for Name
+	if utf8.RuneCountInString(m.GetName()) < 3 {
+		err := CreateRoleRequestValidationError{
+			field:  "Name",
+			reason: "value length must be at least 3 runes",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
 
-	// no validation rules for Desc
+	if utf8.RuneCountInString(m.GetDesc()) < 3 {
+		err := CreateRoleRequestValidationError{
+			field:  "Desc",
+			reason: "value length must be at least 3 runes",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
 
 	// no validation rules for Jwt
 
@@ -277,9 +295,27 @@ func (m *UpdateRoleRequest) validate(all bool) error {
 
 	// no validation rules for Id
 
-	// no validation rules for Name
+	if utf8.RuneCountInString(m.GetName()) < 3 {
+		err := UpdateRoleRequestValidationError{
+			field:  "Name",
+			reason: "value length must be at least 3 runes",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
 
-	// no validation rules for Desc
+	if utf8.RuneCountInString(m.GetDesc()) < 3 {
+		err := UpdateRoleRequestValidationError{
+			field:  "Desc",
+			reason: "value length must be at least 3 runes",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
 
 	// no validation rules for Jwt
 
@@ -736,7 +772,16 @@ func (m *GetRoleByNameRequest) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for Name
+	if utf8.RuneCountInString(m.GetName()) < 3 {
+		err := GetRoleByNameRequestValidationError{
+			field:  "Name",
+			reason: "value length must be at least 3 runes",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
 
 	// no validation rules for Jwt
 

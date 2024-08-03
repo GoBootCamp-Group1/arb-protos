@@ -57,17 +57,95 @@ func (m *CreateUserRequest) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for Name
+	if utf8.RuneCountInString(m.GetName()) < 3 {
+		err := CreateUserRequestValidationError{
+			field:  "Name",
+			reason: "value length must be at least 3 runes",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
 
-	// no validation rules for Email
+	if err := m._validateEmail(m.GetEmail()); err != nil {
+		err = CreateUserRequestValidationError{
+			field:  "Email",
+			reason: "value must be a valid email address",
+			cause:  err,
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
 
-	// no validation rules for Password
+	if utf8.RuneCountInString(m.GetPassword()) < 8 {
+		err := CreateUserRequestValidationError{
+			field:  "Password",
+			reason: "value length must be at least 8 runes",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
 
 	if len(errors) > 0 {
 		return CreateUserRequestMultiError(errors)
 	}
 
 	return nil
+}
+
+func (m *CreateUserRequest) _validateHostname(host string) error {
+	s := strings.ToLower(strings.TrimSuffix(host, "."))
+
+	if len(host) > 253 {
+		return errors.New("hostname cannot exceed 253 characters")
+	}
+
+	for _, part := range strings.Split(s, ".") {
+		if l := len(part); l == 0 || l > 63 {
+			return errors.New("hostname part must be non-empty and cannot exceed 63 characters")
+		}
+
+		if part[0] == '-' {
+			return errors.New("hostname parts cannot begin with hyphens")
+		}
+
+		if part[len(part)-1] == '-' {
+			return errors.New("hostname parts cannot end with hyphens")
+		}
+
+		for _, r := range part {
+			if (r < 'a' || r > 'z') && (r < '0' || r > '9') && r != '-' {
+				return fmt.Errorf("hostname parts can only contain alphanumeric characters or hyphens, got %q", string(r))
+			}
+		}
+	}
+
+	return nil
+}
+
+func (m *CreateUserRequest) _validateEmail(addr string) error {
+	a, err := mail.ParseAddress(addr)
+	if err != nil {
+		return err
+	}
+	addr = a.Address
+
+	if len(addr) > 254 {
+		return errors.New("email addresses cannot exceed 254 characters")
+	}
+
+	parts := strings.SplitN(addr, "@", 2)
+
+	if len(parts[0]) > 64 {
+		return errors.New("email address local phrase cannot exceed 64 characters")
+	}
+
+	return m._validateHostname(parts[1])
 }
 
 // CreateUserRequestMultiError is an error wrapping multiple validation errors
@@ -277,9 +355,28 @@ func (m *UpdateUserRequest) validate(all bool) error {
 
 	// no validation rules for Id
 
-	// no validation rules for Name
+	if utf8.RuneCountInString(m.GetName()) < 3 {
+		err := UpdateUserRequestValidationError{
+			field:  "Name",
+			reason: "value length must be at least 3 runes",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
 
-	// no validation rules for Email
+	if err := m._validateEmail(m.GetEmail()); err != nil {
+		err = UpdateUserRequestValidationError{
+			field:  "Email",
+			reason: "value must be a valid email address",
+			cause:  err,
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
 
 	// no validation rules for Jwt
 
@@ -288,6 +385,56 @@ func (m *UpdateUserRequest) validate(all bool) error {
 	}
 
 	return nil
+}
+
+func (m *UpdateUserRequest) _validateHostname(host string) error {
+	s := strings.ToLower(strings.TrimSuffix(host, "."))
+
+	if len(host) > 253 {
+		return errors.New("hostname cannot exceed 253 characters")
+	}
+
+	for _, part := range strings.Split(s, ".") {
+		if l := len(part); l == 0 || l > 63 {
+			return errors.New("hostname part must be non-empty and cannot exceed 63 characters")
+		}
+
+		if part[0] == '-' {
+			return errors.New("hostname parts cannot begin with hyphens")
+		}
+
+		if part[len(part)-1] == '-' {
+			return errors.New("hostname parts cannot end with hyphens")
+		}
+
+		for _, r := range part {
+			if (r < 'a' || r > 'z') && (r < '0' || r > '9') && r != '-' {
+				return fmt.Errorf("hostname parts can only contain alphanumeric characters or hyphens, got %q", string(r))
+			}
+		}
+	}
+
+	return nil
+}
+
+func (m *UpdateUserRequest) _validateEmail(addr string) error {
+	a, err := mail.ParseAddress(addr)
+	if err != nil {
+		return err
+	}
+	addr = a.Address
+
+	if len(addr) > 254 {
+		return errors.New("email addresses cannot exceed 254 characters")
+	}
+
+	parts := strings.SplitN(addr, "@", 2)
+
+	if len(parts[0]) > 64 {
+		return errors.New("email address local phrase cannot exceed 64 characters")
+	}
+
+	return m._validateHostname(parts[1])
 }
 
 // UpdateUserRequestMultiError is an error wrapping multiple validation errors
@@ -493,7 +640,16 @@ func (m *Permission) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for Name
+	if utf8.RuneCountInString(m.GetName()) < 3 {
+		err := PermissionValidationError{
+			field:  "Name",
+			reason: "value length must be at least 3 runes",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
 
 	// no validation rules for Id
 
@@ -595,7 +751,16 @@ func (m *Role) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for Name
+	if utf8.RuneCountInString(m.GetName()) < 3 {
+		err := RoleValidationError{
+			field:  "Name",
+			reason: "value length must be at least 3 runes",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
 
 	for idx, item := range m.GetPerms() {
 		_, _ = idx, item
@@ -733,9 +898,28 @@ func (m *User) validate(all bool) error {
 
 	// no validation rules for Id
 
-	// no validation rules for Name
+	if utf8.RuneCountInString(m.GetName()) < 3 {
+		err := UserValidationError{
+			field:  "Name",
+			reason: "value length must be at least 3 runes",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
 
-	// no validation rules for Email
+	if err := m._validateEmail(m.GetEmail()); err != nil {
+		err = UserValidationError{
+			field:  "Email",
+			reason: "value must be a valid email address",
+			cause:  err,
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
 
 	for idx, item := range m.GetRoles() {
 		_, _ = idx, item
@@ -771,11 +955,63 @@ func (m *User) validate(all bool) error {
 
 	}
 
+	// no validation rules for Blocked
+
 	if len(errors) > 0 {
 		return UserMultiError(errors)
 	}
 
 	return nil
+}
+
+func (m *User) _validateHostname(host string) error {
+	s := strings.ToLower(strings.TrimSuffix(host, "."))
+
+	if len(host) > 253 {
+		return errors.New("hostname cannot exceed 253 characters")
+	}
+
+	for _, part := range strings.Split(s, ".") {
+		if l := len(part); l == 0 || l > 63 {
+			return errors.New("hostname part must be non-empty and cannot exceed 63 characters")
+		}
+
+		if part[0] == '-' {
+			return errors.New("hostname parts cannot begin with hyphens")
+		}
+
+		if part[len(part)-1] == '-' {
+			return errors.New("hostname parts cannot end with hyphens")
+		}
+
+		for _, r := range part {
+			if (r < 'a' || r > 'z') && (r < '0' || r > '9') && r != '-' {
+				return fmt.Errorf("hostname parts can only contain alphanumeric characters or hyphens, got %q", string(r))
+			}
+		}
+	}
+
+	return nil
+}
+
+func (m *User) _validateEmail(addr string) error {
+	a, err := mail.ParseAddress(addr)
+	if err != nil {
+		return err
+	}
+	addr = a.Address
+
+	if len(addr) > 254 {
+		return errors.New("email addresses cannot exceed 254 characters")
+	}
+
+	parts := strings.SplitN(addr, "@", 2)
+
+	if len(parts[0]) > 64 {
+		return errors.New("email address local phrase cannot exceed 64 characters")
+	}
+
+	return m._validateHostname(parts[1])
 }
 
 // UserMultiError is an error wrapping multiple validation errors returned by
@@ -1113,7 +1349,17 @@ func (m *GetUserByEmailRequest) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for Email
+	if err := m._validateEmail(m.GetEmail()); err != nil {
+		err = GetUserByEmailRequestValidationError{
+			field:  "Email",
+			reason: "value must be a valid email address",
+			cause:  err,
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
 
 	// no validation rules for Jwt
 
@@ -1122,6 +1368,56 @@ func (m *GetUserByEmailRequest) validate(all bool) error {
 	}
 
 	return nil
+}
+
+func (m *GetUserByEmailRequest) _validateHostname(host string) error {
+	s := strings.ToLower(strings.TrimSuffix(host, "."))
+
+	if len(host) > 253 {
+		return errors.New("hostname cannot exceed 253 characters")
+	}
+
+	for _, part := range strings.Split(s, ".") {
+		if l := len(part); l == 0 || l > 63 {
+			return errors.New("hostname part must be non-empty and cannot exceed 63 characters")
+		}
+
+		if part[0] == '-' {
+			return errors.New("hostname parts cannot begin with hyphens")
+		}
+
+		if part[len(part)-1] == '-' {
+			return errors.New("hostname parts cannot end with hyphens")
+		}
+
+		for _, r := range part {
+			if (r < 'a' || r > 'z') && (r < '0' || r > '9') && r != '-' {
+				return fmt.Errorf("hostname parts can only contain alphanumeric characters or hyphens, got %q", string(r))
+			}
+		}
+	}
+
+	return nil
+}
+
+func (m *GetUserByEmailRequest) _validateEmail(addr string) error {
+	a, err := mail.ParseAddress(addr)
+	if err != nil {
+		return err
+	}
+	addr = a.Address
+
+	if len(addr) > 254 {
+		return errors.New("email addresses cannot exceed 254 characters")
+	}
+
+	parts := strings.SplitN(addr, "@", 2)
+
+	if len(parts[0]) > 64 {
+		return errors.New("email address local phrase cannot exceed 64 characters")
+	}
+
+	return m._validateHostname(parts[1])
 }
 
 // GetUserByEmailRequestMultiError is an error wrapping multiple validation
@@ -1816,7 +2112,16 @@ func (m *GetUsersByRoleRequest) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for RoleName
+	if utf8.RuneCountInString(m.GetRoleName()) < 3 {
+		err := GetUsersByRoleRequestValidationError{
+			field:  "RoleName",
+			reason: "value length must be at least 3 runes",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
 
 	// no validation rules for Jwt
 
@@ -2492,9 +2797,28 @@ func (m *AuthenticateRequest) validate(all bool) error {
 
 	var errors []error
 
-	// no validation rules for Email
+	if err := m._validateEmail(m.GetEmail()); err != nil {
+		err = AuthenticateRequestValidationError{
+			field:  "Email",
+			reason: "value must be a valid email address",
+			cause:  err,
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
 
-	// no validation rules for Password
+	if utf8.RuneCountInString(m.GetPassword()) < 8 {
+		err := AuthenticateRequestValidationError{
+			field:  "Password",
+			reason: "value length must be at least 8 runes",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
 
 	// no validation rules for Jwt
 
@@ -2503,6 +2827,56 @@ func (m *AuthenticateRequest) validate(all bool) error {
 	}
 
 	return nil
+}
+
+func (m *AuthenticateRequest) _validateHostname(host string) error {
+	s := strings.ToLower(strings.TrimSuffix(host, "."))
+
+	if len(host) > 253 {
+		return errors.New("hostname cannot exceed 253 characters")
+	}
+
+	for _, part := range strings.Split(s, ".") {
+		if l := len(part); l == 0 || l > 63 {
+			return errors.New("hostname part must be non-empty and cannot exceed 63 characters")
+		}
+
+		if part[0] == '-' {
+			return errors.New("hostname parts cannot begin with hyphens")
+		}
+
+		if part[len(part)-1] == '-' {
+			return errors.New("hostname parts cannot end with hyphens")
+		}
+
+		for _, r := range part {
+			if (r < 'a' || r > 'z') && (r < '0' || r > '9') && r != '-' {
+				return fmt.Errorf("hostname parts can only contain alphanumeric characters or hyphens, got %q", string(r))
+			}
+		}
+	}
+
+	return nil
+}
+
+func (m *AuthenticateRequest) _validateEmail(addr string) error {
+	a, err := mail.ParseAddress(addr)
+	if err != nil {
+		return err
+	}
+	addr = a.Address
+
+	if len(addr) > 254 {
+		return errors.New("email addresses cannot exceed 254 characters")
+	}
+
+	parts := strings.SplitN(addr, "@", 2)
+
+	if len(parts[0]) > 64 {
+		return errors.New("email address local phrase cannot exceed 64 characters")
+	}
+
+	return m._validateHostname(parts[1])
 }
 
 // AuthenticateRequestMultiError is an error wrapping multiple validation
@@ -2602,7 +2976,16 @@ func (m *AuthenticateResult) validate(all bool) error {
 
 	// no validation rules for UserID
 
-	// no validation rules for Name
+	if utf8.RuneCountInString(m.GetName()) < 3 {
+		err := AuthenticateResultValidationError{
+			field:  "Name",
+			reason: "value length must be at least 3 runes",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
 
 	for idx, item := range m.GetRoles() {
 		_, _ = idx, item
@@ -2854,3 +3237,429 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = AuthenticateResponseValidationError{}
+
+// Validate checks the field values on BlockUserRequest with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// first error encountered is returned, or nil if there are no violations.
+func (m *BlockUserRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on BlockUserRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// BlockUserRequestMultiError, or nil if none found.
+func (m *BlockUserRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *BlockUserRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for UserId
+
+	// no validation rules for Jwt
+
+	if len(errors) > 0 {
+		return BlockUserRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// BlockUserRequestMultiError is an error wrapping multiple validation errors
+// returned by BlockUserRequest.ValidateAll() if the designated constraints
+// aren't met.
+type BlockUserRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m BlockUserRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m BlockUserRequestMultiError) AllErrors() []error { return m }
+
+// BlockUserRequestValidationError is the validation error returned by
+// BlockUserRequest.Validate if the designated constraints aren't met.
+type BlockUserRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e BlockUserRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e BlockUserRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e BlockUserRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e BlockUserRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e BlockUserRequestValidationError) ErrorName() string { return "BlockUserRequestValidationError" }
+
+// Error satisfies the builtin error interface
+func (e BlockUserRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sBlockUserRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = BlockUserRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = BlockUserRequestValidationError{}
+
+// Validate checks the field values on BlockUserResponse with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// first error encountered is returned, or nil if there are no violations.
+func (m *BlockUserResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on BlockUserResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// BlockUserResponseMultiError, or nil if none found.
+func (m *BlockUserResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *BlockUserResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Success
+
+	// no validation rules for Message
+
+	// no validation rules for Error
+
+	if len(errors) > 0 {
+		return BlockUserResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// BlockUserResponseMultiError is an error wrapping multiple validation errors
+// returned by BlockUserResponse.ValidateAll() if the designated constraints
+// aren't met.
+type BlockUserResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m BlockUserResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m BlockUserResponseMultiError) AllErrors() []error { return m }
+
+// BlockUserResponseValidationError is the validation error returned by
+// BlockUserResponse.Validate if the designated constraints aren't met.
+type BlockUserResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e BlockUserResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e BlockUserResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e BlockUserResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e BlockUserResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e BlockUserResponseValidationError) ErrorName() string {
+	return "BlockUserResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e BlockUserResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sBlockUserResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = BlockUserResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = BlockUserResponseValidationError{}
+
+// Validate checks the field values on UnBlockUserRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *UnBlockUserRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on UnBlockUserRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// UnBlockUserRequestMultiError, or nil if none found.
+func (m *UnBlockUserRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *UnBlockUserRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for UserId
+
+	// no validation rules for Jwt
+
+	if len(errors) > 0 {
+		return UnBlockUserRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// UnBlockUserRequestMultiError is an error wrapping multiple validation errors
+// returned by UnBlockUserRequest.ValidateAll() if the designated constraints
+// aren't met.
+type UnBlockUserRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m UnBlockUserRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m UnBlockUserRequestMultiError) AllErrors() []error { return m }
+
+// UnBlockUserRequestValidationError is the validation error returned by
+// UnBlockUserRequest.Validate if the designated constraints aren't met.
+type UnBlockUserRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e UnBlockUserRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e UnBlockUserRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e UnBlockUserRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e UnBlockUserRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e UnBlockUserRequestValidationError) ErrorName() string {
+	return "UnBlockUserRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e UnBlockUserRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sUnBlockUserRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = UnBlockUserRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = UnBlockUserRequestValidationError{}
+
+// Validate checks the field values on UnBlockUserResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *UnBlockUserResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on UnBlockUserResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// UnBlockUserResponseMultiError, or nil if none found.
+func (m *UnBlockUserResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *UnBlockUserResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Success
+
+	// no validation rules for Message
+
+	// no validation rules for Error
+
+	if len(errors) > 0 {
+		return UnBlockUserResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// UnBlockUserResponseMultiError is an error wrapping multiple validation
+// errors returned by UnBlockUserResponse.ValidateAll() if the designated
+// constraints aren't met.
+type UnBlockUserResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m UnBlockUserResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m UnBlockUserResponseMultiError) AllErrors() []error { return m }
+
+// UnBlockUserResponseValidationError is the validation error returned by
+// UnBlockUserResponse.Validate if the designated constraints aren't met.
+type UnBlockUserResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e UnBlockUserResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e UnBlockUserResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e UnBlockUserResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e UnBlockUserResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e UnBlockUserResponseValidationError) ErrorName() string {
+	return "UnBlockUserResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e UnBlockUserResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sUnBlockUserResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = UnBlockUserResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = UnBlockUserResponseValidationError{}

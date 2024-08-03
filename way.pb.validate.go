@@ -35,56 +35,51 @@ var (
 	_ = sort.Sort
 )
 
-// Validate checks the field values on ValidateMapAndReturnArivalTimeRequest
+// Validate checks the field values on ValidateMapAndReturnArrivalTimeRequest
 // with the rules defined in the proto definition for this message. If any
 // rules are violated, the first error encountered is returned, or nil if
 // there are no violations.
-func (m *ValidateMapAndReturnArivalTimeRequest) Validate() error {
+func (m *ValidateMapAndReturnArrivalTimeRequest) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on ValidateMapAndReturnArivalTimeRequest
-// with the rules defined in the proto definition for this message. If any
-// rules are violated, the result is a list of violation errors wrapped in
-// ValidateMapAndReturnArivalTimeRequestMultiError, or nil if none found.
-func (m *ValidateMapAndReturnArivalTimeRequest) ValidateAll() error {
+// ValidateAll checks the field values on
+// ValidateMapAndReturnArrivalTimeRequest with the rules defined in the proto
+// definition for this message. If any rules are violated, the result is a
+// list of violation errors wrapped in
+// ValidateMapAndReturnArrivalTimeRequestMultiError, or nil if none found.
+func (m *ValidateMapAndReturnArrivalTimeRequest) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *ValidateMapAndReturnArivalTimeRequest) validate(all bool) error {
+func (m *ValidateMapAndReturnArrivalTimeRequest) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
 
 	var errors []error
 
-	// no validation rules for OriginCityId
-
-	// no validation rules for DestinationCityId
-
 	// no validation rules for OriginStationId
 
 	// no validation rules for DestinationStationId
 
-	// no validation rules for Type
-
 	// no validation rules for Speed
 
 	if len(errors) > 0 {
-		return ValidateMapAndReturnArivalTimeRequestMultiError(errors)
+		return ValidateMapAndReturnArrivalTimeRequestMultiError(errors)
 	}
 
 	return nil
 }
 
-// ValidateMapAndReturnArivalTimeRequestMultiError is an error wrapping
+// ValidateMapAndReturnArrivalTimeRequestMultiError is an error wrapping
 // multiple validation errors returned by
-// ValidateMapAndReturnArivalTimeRequest.ValidateAll() if the designated
+// ValidateMapAndReturnArrivalTimeRequest.ValidateAll() if the designated
 // constraints aren't met.
-type ValidateMapAndReturnArivalTimeRequestMultiError []error
+type ValidateMapAndReturnArrivalTimeRequestMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m ValidateMapAndReturnArivalTimeRequestMultiError) Error() string {
+func (m ValidateMapAndReturnArrivalTimeRequestMultiError) Error() string {
 	var msgs []string
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -93,12 +88,12 @@ func (m ValidateMapAndReturnArivalTimeRequestMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m ValidateMapAndReturnArivalTimeRequestMultiError) AllErrors() []error { return m }
+func (m ValidateMapAndReturnArrivalTimeRequestMultiError) AllErrors() []error { return m }
 
-// ValidateMapAndReturnArivalTimeRequestValidationError is the validation error
-// returned by ValidateMapAndReturnArivalTimeRequest.Validate if the
+// ValidateMapAndReturnArrivalTimeRequestValidationError is the validation
+// error returned by ValidateMapAndReturnArrivalTimeRequest.Validate if the
 // designated constraints aren't met.
-type ValidateMapAndReturnArivalTimeRequestValidationError struct {
+type ValidateMapAndReturnArrivalTimeRequestValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -106,24 +101,24 @@ type ValidateMapAndReturnArivalTimeRequestValidationError struct {
 }
 
 // Field function returns field value.
-func (e ValidateMapAndReturnArivalTimeRequestValidationError) Field() string { return e.field }
+func (e ValidateMapAndReturnArrivalTimeRequestValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e ValidateMapAndReturnArivalTimeRequestValidationError) Reason() string { return e.reason }
+func (e ValidateMapAndReturnArrivalTimeRequestValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e ValidateMapAndReturnArivalTimeRequestValidationError) Cause() error { return e.cause }
+func (e ValidateMapAndReturnArrivalTimeRequestValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e ValidateMapAndReturnArivalTimeRequestValidationError) Key() bool { return e.key }
+func (e ValidateMapAndReturnArrivalTimeRequestValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e ValidateMapAndReturnArivalTimeRequestValidationError) ErrorName() string {
-	return "ValidateMapAndReturnArivalTimeRequestValidationError"
+func (e ValidateMapAndReturnArrivalTimeRequestValidationError) ErrorName() string {
+	return "ValidateMapAndReturnArrivalTimeRequestValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e ValidateMapAndReturnArivalTimeRequestValidationError) Error() string {
+func (e ValidateMapAndReturnArrivalTimeRequestValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -135,14 +130,14 @@ func (e ValidateMapAndReturnArivalTimeRequestValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sValidateMapAndReturnArivalTimeRequest.%s: %s%s",
+		"invalid %sValidateMapAndReturnArrivalTimeRequest.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = ValidateMapAndReturnArivalTimeRequestValidationError{}
+var _ error = ValidateMapAndReturnArrivalTimeRequestValidationError{}
 
 var _ interface {
 	Field() string
@@ -150,55 +145,57 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = ValidateMapAndReturnArivalTimeRequestValidationError{}
+} = ValidateMapAndReturnArrivalTimeRequestValidationError{}
 
-// Validate checks the field values on ValidateMapAndReturnArivalTimeResponse
+// Validate checks the field values on ValidateMapAndReturnArrivalTimeResponse
 // with the rules defined in the proto definition for this message. If any
 // rules are violated, the first error encountered is returned, or nil if
 // there are no violations.
-func (m *ValidateMapAndReturnArivalTimeResponse) Validate() error {
+func (m *ValidateMapAndReturnArrivalTimeResponse) Validate() error {
 	return m.validate(false)
 }
 
 // ValidateAll checks the field values on
-// ValidateMapAndReturnArivalTimeResponse with the rules defined in the proto
+// ValidateMapAndReturnArrivalTimeResponse with the rules defined in the proto
 // definition for this message. If any rules are violated, the result is a
 // list of violation errors wrapped in
-// ValidateMapAndReturnArivalTimeResponseMultiError, or nil if none found.
-func (m *ValidateMapAndReturnArivalTimeResponse) ValidateAll() error {
+// ValidateMapAndReturnArrivalTimeResponseMultiError, or nil if none found.
+func (m *ValidateMapAndReturnArrivalTimeResponse) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *ValidateMapAndReturnArivalTimeResponse) validate(all bool) error {
+func (m *ValidateMapAndReturnArrivalTimeResponse) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
 
 	var errors []error
 
+	// no validation rules for Success
+
 	if all {
-		switch v := interface{}(m.GetArrivalTime()).(type) {
+		switch v := interface{}(m.GetData()).(type) {
 		case interface{ ValidateAll() error }:
 			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, ValidateMapAndReturnArivalTimeResponseValidationError{
-					field:  "ArrivalTime",
+				errors = append(errors, ValidateMapAndReturnArrivalTimeResponseValidationError{
+					field:  "Data",
 					reason: "embedded message failed validation",
 					cause:  err,
 				})
 			}
 		case interface{ Validate() error }:
 			if err := v.Validate(); err != nil {
-				errors = append(errors, ValidateMapAndReturnArivalTimeResponseValidationError{
-					field:  "ArrivalTime",
+				errors = append(errors, ValidateMapAndReturnArrivalTimeResponseValidationError{
+					field:  "Data",
 					reason: "embedded message failed validation",
 					cause:  err,
 				})
 			}
 		}
-	} else if v, ok := interface{}(m.GetArrivalTime()).(interface{ Validate() error }); ok {
+	} else if v, ok := interface{}(m.GetData()).(interface{ Validate() error }); ok {
 		if err := v.Validate(); err != nil {
-			return ValidateMapAndReturnArivalTimeResponseValidationError{
-				field:  "ArrivalTime",
+			return ValidateMapAndReturnArrivalTimeResponseValidationError{
+				field:  "Data",
 				reason: "embedded message failed validation",
 				cause:  err,
 			}
@@ -206,20 +203,20 @@ func (m *ValidateMapAndReturnArivalTimeResponse) validate(all bool) error {
 	}
 
 	if len(errors) > 0 {
-		return ValidateMapAndReturnArivalTimeResponseMultiError(errors)
+		return ValidateMapAndReturnArrivalTimeResponseMultiError(errors)
 	}
 
 	return nil
 }
 
-// ValidateMapAndReturnArivalTimeResponseMultiError is an error wrapping
+// ValidateMapAndReturnArrivalTimeResponseMultiError is an error wrapping
 // multiple validation errors returned by
-// ValidateMapAndReturnArivalTimeResponse.ValidateAll() if the designated
+// ValidateMapAndReturnArrivalTimeResponse.ValidateAll() if the designated
 // constraints aren't met.
-type ValidateMapAndReturnArivalTimeResponseMultiError []error
+type ValidateMapAndReturnArrivalTimeResponseMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m ValidateMapAndReturnArivalTimeResponseMultiError) Error() string {
+func (m ValidateMapAndReturnArrivalTimeResponseMultiError) Error() string {
 	var msgs []string
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -228,12 +225,12 @@ func (m ValidateMapAndReturnArivalTimeResponseMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m ValidateMapAndReturnArivalTimeResponseMultiError) AllErrors() []error { return m }
+func (m ValidateMapAndReturnArrivalTimeResponseMultiError) AllErrors() []error { return m }
 
-// ValidateMapAndReturnArivalTimeResponseValidationError is the validation
-// error returned by ValidateMapAndReturnArivalTimeResponse.Validate if the
+// ValidateMapAndReturnArrivalTimeResponseValidationError is the validation
+// error returned by ValidateMapAndReturnArrivalTimeResponse.Validate if the
 // designated constraints aren't met.
-type ValidateMapAndReturnArivalTimeResponseValidationError struct {
+type ValidateMapAndReturnArrivalTimeResponseValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -241,24 +238,24 @@ type ValidateMapAndReturnArivalTimeResponseValidationError struct {
 }
 
 // Field function returns field value.
-func (e ValidateMapAndReturnArivalTimeResponseValidationError) Field() string { return e.field }
+func (e ValidateMapAndReturnArrivalTimeResponseValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e ValidateMapAndReturnArivalTimeResponseValidationError) Reason() string { return e.reason }
+func (e ValidateMapAndReturnArrivalTimeResponseValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e ValidateMapAndReturnArivalTimeResponseValidationError) Cause() error { return e.cause }
+func (e ValidateMapAndReturnArrivalTimeResponseValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e ValidateMapAndReturnArivalTimeResponseValidationError) Key() bool { return e.key }
+func (e ValidateMapAndReturnArrivalTimeResponseValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e ValidateMapAndReturnArivalTimeResponseValidationError) ErrorName() string {
-	return "ValidateMapAndReturnArivalTimeResponseValidationError"
+func (e ValidateMapAndReturnArrivalTimeResponseValidationError) ErrorName() string {
+	return "ValidateMapAndReturnArrivalTimeResponseValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e ValidateMapAndReturnArivalTimeResponseValidationError) Error() string {
+func (e ValidateMapAndReturnArrivalTimeResponseValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -270,14 +267,14 @@ func (e ValidateMapAndReturnArivalTimeResponseValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sValidateMapAndReturnArivalTimeResponse.%s: %s%s",
+		"invalid %sValidateMapAndReturnArrivalTimeResponse.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = ValidateMapAndReturnArivalTimeResponseValidationError{}
+var _ error = ValidateMapAndReturnArrivalTimeResponseValidationError{}
 
 var _ interface {
 	Field() string
@@ -285,7 +282,112 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = ValidateMapAndReturnArivalTimeResponseValidationError{}
+} = ValidateMapAndReturnArrivalTimeResponseValidationError{}
+
+// Validate checks the field values on ValidateMapAndReturnArrivalTime with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *ValidateMapAndReturnArrivalTime) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on ValidateMapAndReturnArrivalTime with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the result is a list of violation errors wrapped in
+// ValidateMapAndReturnArrivalTimeMultiError, or nil if none found.
+func (m *ValidateMapAndReturnArrivalTime) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *ValidateMapAndReturnArrivalTime) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for ArrivalTime
+
+	if len(errors) > 0 {
+		return ValidateMapAndReturnArrivalTimeMultiError(errors)
+	}
+
+	return nil
+}
+
+// ValidateMapAndReturnArrivalTimeMultiError is an error wrapping multiple
+// validation errors returned by ValidateMapAndReturnArrivalTime.ValidateAll()
+// if the designated constraints aren't met.
+type ValidateMapAndReturnArrivalTimeMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m ValidateMapAndReturnArrivalTimeMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m ValidateMapAndReturnArrivalTimeMultiError) AllErrors() []error { return m }
+
+// ValidateMapAndReturnArrivalTimeValidationError is the validation error
+// returned by ValidateMapAndReturnArrivalTime.Validate if the designated
+// constraints aren't met.
+type ValidateMapAndReturnArrivalTimeValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ValidateMapAndReturnArrivalTimeValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ValidateMapAndReturnArrivalTimeValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ValidateMapAndReturnArrivalTimeValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ValidateMapAndReturnArrivalTimeValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ValidateMapAndReturnArrivalTimeValidationError) ErrorName() string {
+	return "ValidateMapAndReturnArrivalTimeValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ValidateMapAndReturnArrivalTimeValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sValidateMapAndReturnArrivalTime.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ValidateMapAndReturnArrivalTimeValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ValidateMapAndReturnArrivalTimeValidationError{}
 
 // Validate checks the field values on Way with the rules defined in the proto
 // definition for this message. If any rules are violated, the first error
