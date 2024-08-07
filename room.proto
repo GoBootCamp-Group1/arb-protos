@@ -1,0 +1,71 @@
+syntax = "proto3";
+
+package hotel;
+option go_package="github.com/GoBootCamp-Group1/arb-protos" ;
+import "google/protobuf/timestamp.proto";
+
+service RoomService {
+  rpc CreateRoom (CreateRoomRequest) returns (CreateRoomResponse);
+  rpc GetRoom (GetRoomRequest) returns (GetRoomResponse);
+  rpc UpdateRoom (UpdateRoomRequest) returns (UpdateRoomResponse);
+  rpc DeleteRoom (DeleteRoomRequest) returns (DeleteRoomResponse);
+  rpc ListRooms (ListRoomRequest) returns (ListRoomResponse);
+}
+
+message Room {
+  string id = 1;
+  string hotel_id = 2;
+  float price_per_12_hour_for_user = 3;
+  float price_per_12_hour_for_agency = 4;
+  int32 capacity = 5;
+  bool available = 6;
+}
+
+message CreateRoomRequest {
+  string hotel_id = 1;
+  float price_per_12_hour_for_user = 2;
+  float price_per_12_hour_for_agency = 3;
+  int32 capacity = 4;
+  bool available = 5;
+}
+
+message CreateRoomResponse {
+  string status = 1;
+}
+
+message GetRoomRequest {
+  string id = 1;
+}
+
+message GetRoomResponse {
+  Room room = 1;
+}
+
+message UpdateRoomRequest {
+  string id = 1;
+  string hotel_id = 2;
+  float price_per_12_hour_for_user = 3;
+  float price_per_12_hour_for_agency = 4;
+  int32 capacity = 5;
+  bool available = 6;
+}
+
+message UpdateRoomResponse {
+  string status = 1;
+}
+
+message DeleteRoomRequest {
+  string id = 1;
+}
+
+message DeleteRoomResponse {
+  string status = 1;
+}
+
+message ListRoomRequest {
+  string hotel_id = 1;
+}
+
+message ListRoomResponse {
+  repeated Room rooms = 1;
+}

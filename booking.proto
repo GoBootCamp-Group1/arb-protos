@@ -1,0 +1,89 @@
+syntax = "proto3";
+option go_package="github.com/GoBootCamp-Group1/arb-protos" ;
+package hotel;
+
+import "google/protobuf/timestamp.proto";
+
+service BookingService {
+  rpc CreateBooking (CreateBookingRequest) returns (CreateBookingResponse);
+  rpc GetBooking (GetBookingRequest) returns (GetBookingResponse);
+  rpc UpdateBooking (UpdateBookingRequest) returns (UpdateBookingResponse);
+  rpc DeleteBooking (DeleteBookingRequest) returns (DeleteBookingResponse);
+  rpc ListBookingsByHotel (ListBookingsByHotelRequest) returns (ListBookingsByHotelResponse);
+  rpc ListBookingsByUser (ListBookingsByUserRequest) returns (ListBookingsByUserResponse);
+  rpc ListBookingsByRoom (ListBookingsByRoomRequest) returns (ListBookingsByRoomResponse);
+}
+
+message Booking {
+  string id = 1;
+  string user_id = 2;
+  string hotel_id = 3;
+  string room_id = 4;
+  google.protobuf.Timestamp in_time = 5;
+  google.protobuf.Timestamp out_time = 6;
+}
+
+message CreateBookingRequest {
+  string user_id = 1;
+  string hotel_id = 2;
+  string room_id = 3;
+  google.protobuf.Timestamp in_time = 4;
+  google.protobuf.Timestamp out_time = 5;
+}
+
+message CreateBookingResponse {
+  string status = 1;
+}
+
+message GetBookingRequest {
+  string id = 1;
+}
+
+message GetBookingResponse {
+  Booking booking = 1;
+}
+
+message UpdateBookingRequest {
+  string id = 1;
+  string user_id = 2;
+  string hotel_id = 3;
+  string room_id = 4;
+  google.protobuf.Timestamp in_time = 5;
+  google.protobuf.Timestamp out_time = 6;
+}
+
+message UpdateBookingResponse {
+  string status = 1;
+}
+
+message DeleteBookingRequest {
+  string id = 1;
+}
+
+message DeleteBookingResponse {
+  string status = 1;
+}
+
+message ListBookingsByHotelRequest {
+  string hotel_id = 1;
+}
+
+message ListBookingsByHotelResponse {
+  repeated Booking bookings = 1;
+}
+
+message ListBookingsByUserRequest {
+  string user_id = 1;
+}
+
+message ListBookingsByUserResponse {
+  repeated Booking bookings = 1;
+}
+
+message ListBookingsByRoomRequest {
+  string room_id = 1;
+}
+
+message ListBookingsByRoomResponse {
+  repeated Booking bookings = 1;
+}
