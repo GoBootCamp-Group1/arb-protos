@@ -1,0 +1,104 @@
+syntax = "proto3";
+
+option go_package="github.com/GoBootCamp-Group1/arb-protos" ;
+package hotel;
+
+import "google/protobuf/timestamp.proto";
+
+service HotelService {
+  rpc CreateHotel (CreateHotelRequest) returns (CreateHotelResponse);
+  rpc GetHotel (GetHotelRequest) returns (GetHotelResponse);
+  rpc UpdateHotel (UpdateHotelRequest) returns (UpdateHotelResponse);
+  rpc DeleteHotel (DeleteHotelRequest) returns (DeleteHotelResponse);
+  rpc ListHotels (ListHotelRequest) returns (ListHotelResponse);
+  rpc BlockHotelByOwner (BlockHotelByOwnerRequest) returns (BlockHotelByOwnerResponse);
+  rpc BlockHotel (BlockHotelRequest) returns (BlockHotelResponse);
+  rpc UnBlockHotelByOwner (UnBlockHotelByOwnerRequest) returns (UnBlockHotelByOwnerResponse);
+  rpc UnBlockHotel (UnBlockHotelRequest) returns (UnBlockHotelResponse);
+}
+
+message Hotel {
+  string id = 1;
+  string owner_id = 2;
+  string name = 3;
+  bool blocked = 4;
+  float wallet_balance = 5;
+}
+
+message CreateHotelRequest {
+  string owner_id = 1;
+  string name = 2;
+  float wallet_balance = 3;
+}
+
+message CreateHotelResponse {
+  string status = 1;
+}
+
+message GetHotelRequest {
+  string id = 1;
+}
+
+message GetHotelResponse {
+  Hotel hotel = 1;
+}
+
+message UpdateHotelRequest {
+  string id = 1;
+  string owner_id = 2;
+  string name = 3;
+  bool blocked = 4;
+  float wallet_balance = 5;
+}
+
+message UpdateHotelResponse {
+  string status = 1;
+}
+
+message DeleteHotelRequest {
+  string id = 1;
+}
+
+message DeleteHotelResponse {
+  string status = 1;
+}
+
+message ListHotelRequest {
+  string owner_id = 1;
+}
+
+message ListHotelResponse {
+  repeated Hotel hotels = 1;
+}
+
+message BlockHotelByOwnerRequest {
+  string owner_id = 1;
+}
+
+message BlockHotelByOwnerResponse {
+  string status = 1;
+}
+
+message BlockHotelRequest {
+  string hotel_id = 1;
+}
+
+message BlockHotelResponse {
+  string status = 1;
+}
+
+message UnBlockHotelByOwnerRequest {
+  string owner_id = 1;
+}
+
+message UnBlockHotelByOwnerResponse {
+  string status = 1;
+}
+
+message UnBlockHotelRequest {
+  string hotel_id = 1;
+}
+
+message UnBlockHotelResponse {
+  string status = 1;
+}
